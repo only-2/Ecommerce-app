@@ -1,27 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import Header from './components/Header';
+import Home from './components/Home';
+import Shop from './components/Shop';
 import './index.css';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-
-  render() {
-    return (
-      <div>
-        <Header />
-      </div>
-    );
-  }
-}
-
-
 ReactDOM.render(
-  <App />,
-  document.getElementById('root')
+  <BrowserRouter>
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route path="/shop" component={Shop} />
+    </Switch>
+  </BrowserRouter>,
+  document.getElementById("root")
 );
