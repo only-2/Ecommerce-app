@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>slider in Javascript</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <link rel="stylesheet" href="navbar.css">
+</head>
+
+<body>
+    <nav id="navbar">
+        <ul>
+            <li>
+                <a href="#" class="nav-item">
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-item">
+                    Products
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-item">
+                    About Us
+                </a>
+            </li>
+            <li class="nav-cart">
+                <a href="#" class="nav-item">
+                    Cart
+                </a>
+            </li>
+            <li class="nav-login">
+                <a href="/#" class="nav-item">
+                    Login
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <section class="home">
+        <div class="slider">
+            <div class="slide active" style="background-image: url('images/slide-1.jpg')">
+                <div class="container">
+                    <div class="caption">
+                        <h1>1. Winter Collection 2020</h1>
+                        <p>Lorem ipsum dummy text goes here.</p>
+                        <a href="">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('images/slide-2.jpg')">
+                <div class="container">
+                    <div class="caption">
+                        <h1>2. Winter Collection 2020</h1>
+                        <p>Lorem ipsum dummy text goes here.</p>
+                        <a href="">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('images/slide-3.jpg')">
+                <div class="container">
+                    <div class="caption">
+                        <h1>3. Winter Collection 2020</h1>
+                        <p>Lorem ipsum dummy text goes here.</p>
+                        <a href="">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- controls  -->
+        <div class="controls">
+            <div class="prev">
+                <i class="fas fa-angle-left"></i>
+            </div>
+            <div class="next">
+                <i class="fas fa-angle-right"></i>
+            </div>
+        </div>
+    </section>
+    <section class="category" id="category">
+        <div class="item"><button class="btn">Shop Now</button></div>
+        <div class="item"><button class="btn">Shop Now</button></div>
+        <div class="item"><button class="btn">Shop Now</button></div>
+        <div class="item"><button class="btn">Shop Now</button></div>
+        <div class="item"><button class="btn">Shop Now</button></div>
+        <div class="item"><button class="btn">Shop Now</button></div>
+    </section>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
