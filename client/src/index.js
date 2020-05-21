@@ -1,16 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import Home from './components/Home';
-import Shop from './components/Shop';
-import './index.css';
+import "./index.css";
+
+import Home from "./components/Home";
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={Home} />
-      <Route path="/shop" component={Shop} />
+      <Route path='/' component={Home}></Route>
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")

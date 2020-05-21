@@ -1,15 +1,233 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
+/* Global css */
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
+/* Body */
 body {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.7;
-  height: 100vh;
+  background-color: white;
+  font-family: "Josefin Sans", sans-serif;
+}
+/* Navbar css */
+#navbar {
+  align-items: center;
+  position: sticky;
+  top: 0px;
+  z-index: 10;
+}
+
+#navbar::before {
+  content: "";
+  background-color: rgb(33, 87, 236);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
   width: 100%;
-  background: #e4e4e4;
-  color: #fff;
+  z-index: -1;
+  opacity: 1;
+}
+
+#navbar ul {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 14px;
+}
+
+#navbar ul li {
+  list-style: none;
+  font-size: 1.3rem;
+}
+
+#navbar ul li a {
+  color: white;
+  display: block;
+  padding: 3px 22px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: all ease-in-out 0.4s;
+}
+
+#navbar ul li a:hover {
+  color: black;
+  background-color: white;
+}
+.home {
+  height: 81vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.home .slide {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  display: none;
+  padding: 0 15px;
+  animation: slide 2s ease;
+}
+.home .slide.active {
+  display: flex;
+}
+@keyframes slide {
+  0% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.container {
+  max-width: 1170px;
+  margin: auto;
+}
+
+.home .container {
+  flex-grow: 1;
+}
+.home .caption {
+  width: 50%;
+}
+.home .caption h1 {
+  font-size: 42px;
+  color: #000000;
+  margin: 0;
+}
+.home .slide.active .caption h1 {
+  opacity: 0;
+  animation: captionText 0.5s ease forwards;
+  animation-delay: 1s;
+}
+.home .caption p {
+  font-size: 18px;
+  margin: 15px 0 30px;
+  color: #222222;
+}
+.home .slide.active .caption p {
+  opacity: 0;
+  animation: captionText 0.5s ease forwards;
+  animation-delay: 1.2s;
+}
+.home .caption a {
+  display: inline-block;
+  padding: 10px 30px;
+  background-color: #000000;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.home .slide.active .caption a {
+  opacity: 0;
+  animation: captionText 0.5s ease forwards;
+  animation-delay: 1.4s;
+}
+
+@keyframes captionText {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+.home .controls .prev,
+.home .controls .next {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  height: 40px;
+  width: 40px;
+  margin-top: -20px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.home .controls .prev:hover,
+.home .controls .next:hover {
+  transform: scale(2);
+}
+.home .controls .prev {
+  left: 0;
+}
+.home .controls .next {
+  right: 0;
+}
+
+.home .indicator {
+  position: absolute;
+  left: 50%;
+  bottom: 30px;
+  z-index: 2;
+  transform: translateX(-50%);
+}
+
+.home .indicator div {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  color: #ffffff;
+  background-color: #ff5722;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 25px;
+  margin: 0 3px;
+}
+
+.home .indicator div.active {
+  background-color: #000;
+}
+
+/*responsive*/
+@media (max-width: 767px) {
+  .controls {
+    display: none;
+  }
+}
+.category {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  height: 646px;
+  border: 2px solid red;
+}
+.category div {
+  border: 2px solid black;
+  height: 322px;
+  width: 494.9px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  transition: all 0.4s ease-in-out;
+}
+.category div:hover {
+  transform: scale(1.1);
+}
+.category div .btn {
+  border: 2px solid blue;
+  height: 38px;
+  width: 124px;
+  background: black;
+  color: white;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 16px;
+  opacity: 1;
+  transition: background-color 0.4s ease-in-out;
+}
+.category div .btn:hover {
+  background-color: white;
+  color: black;
 }
