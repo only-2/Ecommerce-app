@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import Navbar from './Navbar';
-import Slider from './Slider';
-import Category from './Category';
+import Navbar from '../../components/Navbar';
+import Slider from '../../components/Slider';
+import Category from '../../components/Category';
 class Home extends Component {
     render() {
         return (

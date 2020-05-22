@@ -46,13 +46,13 @@ class Slider extends Component {
                         </div>
                     </div>
                     <div
-                        class="slide"
+                        className="slide"
                         style={{
                             backgroundImage: `url(${require("../images/slide-3.jpg")})`,
                         }}
                     >
-                        <div class="container">
-                            <div class="caption">
+                        <div className="container">
+                            <div className="caption">
                                 <h1>3. Winter Collection 2020</h1>
                                 <p>Lorem ipsum dummy text goes here.</p>
                                 <a href="">Shop Now</a>
