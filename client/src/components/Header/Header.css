@@ -3,7 +3,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 10px 10%;
-  background-color: #051937;
+  background-color: rgb(33, 87, 236, 0.92);
 }
 @media (max-width: 860px) {
   header {
@@ -13,12 +13,15 @@ header {
 
 nav {
   order: 1;
+  align-items: center;
+  margin: 0;
+  margin-top: 10px;
 }
 
 .nav__links a,
 .cta,
 .overlay__content a {
-  font-family: "Montserrat Alternates", sans-serif;
+  font-family: "Josefin Sans", sans-serif;
   font-weight: 400;
   color: #edf0f1;
   text-decoration: none;
@@ -27,6 +30,7 @@ nav {
 .nav__links {
   list-style: none;
   display: flex;
+  justify-content: center;
   font-size: 16px;
 }
 
@@ -43,7 +47,7 @@ nav {
 }
 
 .nav__links li a:hover {
-  color: #0088a9;
+  color: #ffacb7;
 }
 
 .nav-img {
@@ -56,9 +60,9 @@ nav {
 
 .cta {
   order: 2;
-  margin-left: 20px;
+  margin: 7px;
   padding: 9px 25px;
-  background-color: rgba(0, 136, 169, 1);
+  background-color: #f8b24f;
   border: none;
   border-radius: 50px;
   cursor: pointer;

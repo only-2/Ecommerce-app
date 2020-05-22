@@ -27,17 +27,20 @@ class Header extends Component {
                     <NavLink exact to="/"><img className="nav-img" src="/logo.png" alt="logo" /></NavLink>
                     <nav>
                         <ul className="nav__links">
-                            <li><NavLink exact to="/shop">
-                                <span role="img" aria-label="">🛍️</span> Shop
+                            <li><NavLink exact to="/products">
+                                <span role="img" aria-label="">🛍️ </span> Products
                             </NavLink></li>
                             <li><NavLink exact to="/products">
-                                <span role="img" aria-label="">🏬</span> Products
+                                <span role="img" aria-label="">🏬 </span> Products
                             </NavLink></li>
                             <li><NavLink exact to="/adminProduct">
-                                <span role="img" aria-label="">📜</span>Add Product
+                                <span role="img" aria-label="">📜 </span>Add Product
                             </NavLink></li>
                             <li><NavLink exact to="/cart">
-                                <span role="img" aria-label="">🛒</span>Cart
+                                <span role="img" aria-label="">🛒 </span>Cart
+                            </NavLink></li>
+                            <li><NavLink exact to="/cart">
+                                <span role="img" aria-label="">🔒 </span>Login/SignUp
                             </NavLink></li>
                         </ul>
                     </nav>

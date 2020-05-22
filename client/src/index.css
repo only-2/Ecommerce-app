@@ -11,7 +11,7 @@ body {
   font-family: "Josefin Sans", sans-serif;
 }
 /* Navbar css */
-#navbar {
+/* #navbar {
   align-items: center;
   position: sticky;
   top: 0px;
@@ -54,7 +54,7 @@ body {
 #navbar ul li a:hover {
   color: black;
   background-color: white;
-}
+} */
 .home {
   height: 81vh;
   overflow: hidden;
