@@ -17,7 +17,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-// Will be moved n routes
+// Will be moved in routes
 app.use('/addProduct', (req, res, next) => {
   const { title, imageUrl, Price, Desc } = req.body;
   console.log(req.body)
@@ -35,6 +35,10 @@ app.use('/addProduct', (req, res, next) => {
     })
   res.status(201).send(title);
 })
+
+app.use('/postProduct', (req,res)=> {
+  
+});
 
 app.use('/auth/signup', (req, res, next) => {
   const { email, name, password } = req.body;

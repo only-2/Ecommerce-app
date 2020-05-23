@@ -1,107 +1,126 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { NavLink } from 'react-router-dom';
+import './Auth.css';
 
-import Input from '../../components/Form/Input';
-import Button from '../../components/Button/Button';
-import { required, length, email } from '../../components/validator';
-import './Auth.css'
+const emailRegex = RegExp(
+  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+);
+
+const formValid = ({ formErrors, ...rest }) => {
+  let valid = true;
+  // validate form errors being empty
+  Object.values(formErrors).forEach(val => {
+    val.length > 0 && (valid = false);
+  });
+  // validate the form was filled out
+  Object.values(rest).forEach(val => {
+    val === null && (valid = false);
+  });
+  return valid;
+};
 
 class Login extends Component {
-  state = {
-    loginForm: {
-      email: {
-        value: '',
-        valid: false,
-        touched: false,
-        validators: [required, email]
-      },
-      password: {
-        value: '',
-        valid: false,
-        touched: false,
-        validators: [required, length({ min: 5 })]
-      },
-      formIsValid: false
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: null,
+      password: null,
+      formErrors: {
+        email: "",
+        password: "",
+      }
+    };
+  }
+
+  // handleSubmit = e => {
+  //   e.preventDefault();
+  //   if (formValid(this.state)) {
+  //     console.log(`
+  //       --SUBMITTING--     
+  //       Email: ${this.state.email}
+  //       Password: ${this.state.password}
+  //     `);
+  //   } else {
+  //     console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
+  //   }
+  // };
+
+  handleChange = e => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    let formErrors = { ...this.state.formErrors };
+    switch (name) {
+      case "email":
+        formErrors.email = emailRegex.test(value)
+          ? ""
+          : "invalid email address";
+        break;
+      case "password":
+        formErrors.password =
+          value.length <= 0 ? "Field Required" : "";
+        break;
+
+      default:
+        break;
     }
+    this.setState({ formErrors, [name]: value });
+    // console.log(this.state)
   };
-
-  inputChangeHandler = (input, value) => {
-    this.setState(prevState => {
-      let isValid = true;
-      for (const validator of prevState.loginForm[input].validators) {
-        isValid = isValid && validator(value);
-      }
-      const updatedForm = {
-        ...prevState.loginForm,
-        [input]: {
-          ...prevState.loginForm[input],
-          valid: isValid,
-          value: value
-        }
-      };
-      let formIsValid = true;
-      for (const inputName in updatedForm) {
-        formIsValid = formIsValid && updatedForm[inputName].valid;
-      }
-      return {
-        loginForm: updatedForm,
-        formIsValid: formIsValid
-      };
-    });
-  };
-
-  inputBlurHandler = input => {
-    this.setState(prevState => {
-      return {
-        loginForm: {
-          ...prevState.loginForm,
-          [input]: {
-            ...prevState.loginForm[input],
-            touched: true
-          }
-        }
-      };
-    });
-  };
-
 
   render() {
+
+    const { formErrors } = this.state;
+
     return (
-      <section className="auth-form">
-        <form
-          onSubmit={e =>
+      <div className="wrapper" >
+        <div className="form-wrapper">
+          <h1 className="auth-h1">Login</h1>
+          <form onSubmit={e =>
             this.props.onLogin(e, {
-              email: this.state.loginForm.email.value,
-              password: this.state.loginForm.password.value
+              email: this.state.email,
+              password: this.state.password
             })
-          }
-        >
-          <Input
-            id="email"
-            label="Your E-Mail"
-            type="email"
-            control="input"
-            onChange={this.inputChangeHandler}
-            onBlur={this.inputBlurHandler.bind(this, 'email')}
-            value={this.state.loginForm['email'].value}
-            valid={this.state.loginForm['email'].valid}
-            touched={this.state.loginForm['email'].touched}
-          />
-          <Input
-            id="password"
-            label="Password"
-            type="password"
-            control="input"
-            onChange={this.inputChangeHandler}
-            onBlur={this.inputBlurHandler.bind(this, 'password')}
-            value={this.state.loginForm['password'].value}
-            valid={this.state.loginForm['password'].valid}
-            touched={this.state.loginForm['password'].touched}
-          />
-          <Button design="raised" type="submit" loading={this.props.loading}>
-            Login
-          </Button>
-        </form>
-      </section>
+          } >
+
+            <div className="email">
+              <label htmlFor="email">Email</label>
+              <input
+                className={formErrors.email.length > 0 ? "error" : null}
+                placeholder="Email"
+                type="email"
+                name="email"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.email.length > 0 && (
+                <span className="errorMessage">{formErrors.email}</span>
+              )}
+            </div>
+            <div className="password">
+              <label htmlFor="password">Password</label>
+              <input
+                className={formErrors.password.length > 0 ? "error" : null}
+                placeholder="Password"
+                type="password"
+                name="password"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.password.length > 0 && (
+                <span className="errorMessage">{formErrors.password}</span>
+              )}
+            </div>
+
+            <div className="createAccount">
+              <button type="submit">Login</button>
+
+              <NavLink exact to="/signup">
+                <small>Don't Have an Account?</small>
+              </NavLink>
+            </div>
+          </form>
+        </div>
+      </div>
     );
   }
 }

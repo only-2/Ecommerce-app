@@ -39,8 +39,8 @@ class Header extends Component {
                             <li><NavLink exact to="/cart">
                                 <span role="img" aria-label="">🛒 </span>Cart
                             </NavLink></li>
-                            <li><NavLink exact to="/cart">
-                                <span role="img" aria-label="">🔒 </span>Login/SignUp
+                            <li><NavLink exact to="/logout">
+                                <span role="img" aria-label="">🔒 </span>Logout
                             </NavLink></li>
                         </ul>
                     </nav>

@@ -93,9 +93,9 @@ class App extends React.Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        email: authData.signupForm.email.value,
-        password: authData.signupForm.password.value,
-        name: authData.signupForm.name.value
+        email: authData.email,
+        password: authData.password,
+        name: authData.firstname
       })
     })
       .then(res => {

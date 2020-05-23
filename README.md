@@ -1,6 +1,20 @@
 ### dbms-project-2.0
 
 ```
+Open 2 terminals
+
+First terminal:
+    cd backend
+    npm i
+    npm start
+
+Second terminal:
+    cd client
+    npm i
+    npm start
+```
+
+```
 ├── client
 │    ├── public
 │    ├── src
