@@ -11,20 +11,33 @@ const { randomBytes } = require('crypto');
 const sequelize = require('./database');
 const User = require('./models/user');
 const Product = require('./models/product');
+const Cart = require('./models/cart');
+const CartItem = require('./models/cart-item');
 
 // Middlewares
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+app.use((req, res, next) => {
+  User.findByPk('1')
+    .then(user => {
+      req.user = user;
+      console.log(user);
+      next();
+    })
+    .catch(err => console.log(err));
+});
+
 // Will be moved in routes
 app.use('/addProduct', (req, res, next) => {
-  const { title, imageUrl, Price, Desc } = req.body;
+  const { title, imageUrl, Price, Desc, category } = req.body;
   console.log(req.body)
   Product.create({
     title: title,
     imageUrl: imageUrl,
     price: Price,
+    category: 'Electronics',
     description: Desc
   })
     .then(result => {
@@ -36,9 +49,75 @@ app.use('/addProduct', (req, res, next) => {
   res.status(201).send(title);
 })
 
-app.use('/postProduct', (req,res)=> {
+/*
   
+  Products - 
+    addProduct
+    getElectronics
+
+  Cart - 
+    addtoCart
+    
+    getCartProducts
+
+*/
+
+
+app.use('/getElectronics', (req, res) => {
+  Product.findAll({ where: { category: 'electronics' } })
+    .then(product => {
+      res.send(product);
+    })
+    .catch(err => console.log(err));
 });
+
+app.use('/getCartProducts', (req, res) => {
+  req.user
+    .getCart()
+    .then(cart => {
+      return cart
+        .getProducts()
+        .then(products => {
+          res.send(products)
+        })
+        .catch(err => console.log(err));
+    })
+    .catch(err => console.log(err));
+});
+
+app.use('/addtoCart', (req, res) => {
+  const { prodId } = req.body;
+  let fetchedCart;
+  let newQuantity = 1;
+  req.user
+    .getCart()
+    .then(cart => {
+      fetchedCart = cart;
+      return cart.getProducts({ where: { id: prodId } });
+    })
+    .then(products => {
+      let product;
+      if (products.length > 0) {
+        product = products[0];
+      }
+      if (product) {
+        const oldQuantity = product.cartItem.quantity;
+        newQuantity = oldQuantity + 1;
+        return product;
+      }
+      return Product.findByPk(prodId);
+    })
+    .then(product => {
+      return fetchedCart.addProduct(product, {
+        through: { quantity: newQuantity }
+      });
+    })
+    .then(() => {
+      res.status(201).send("Updated");
+    })
+    .catch(err => console.log(err));
+});
+
 
 app.use('/auth/signup', (req, res, next) => {
   const { email, name, password } = req.body;
@@ -79,6 +158,7 @@ app.use('/auth/login', (req, res, next) => {
         throw error;
       }
       loadedUser = user;
+      console.log(password, user.password)
       return bcrypt.compare(password, user.password);
     })
     .then(isEqual => {
@@ -107,6 +187,10 @@ app.use('/auth/login', (req, res, next) => {
 
 Product.belongsTo(User, { constraints: true, onDelete: 'CASCADE' });
 User.hasMany(Product);
+User.hasOne(Cart);
+Cart.belongsTo(User, { constraints: true, onDelete: 'CASCADE' });
+Cart.belongsToMany(Product, { through: CartItem });
+Product.belongsToMany(Cart, { through: CartItem });
 
 sequelize
   .sync({ force: true })
@@ -116,11 +200,21 @@ sequelize
   })
   .then(user => {
     if (!user) {
-      return User.create({ id: '1', name: 'admin', email: 'test@test.com', password: '$2a$12$8p/Q0bCjSCadQ/wPzUJ.VeiBRfQYcRYz1D4BMH42Ys.Tz7QJcrp8S' });
+      // User with password 12345 added
+      return User.create({
+        id: '1',
+        name: 'admin',
+        email: 'test@test.com',
+        password: '$2a$12$8p/Q0bCjSCadQ/wPzUJ.VeiBRfQYcRYz1D4BMH42Ys.Tz7QJcrp8S'
+      });
     }
     return user;
   })
   .then(user => {
+    // console.log(user);
+    return user.createCart();
+  })
+  .then(cart => {
     app.listen(process.env.PORT || 4000, () => {
       console.log("Server starting on port 4000")
     });

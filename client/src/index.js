@@ -152,7 +152,6 @@ class App extends React.Component {
             />
           )}
         />
-        <Redirect to="/" />
       </Switch>
     );
     if (this.state.isAuth) {
@@ -167,15 +166,14 @@ class App extends React.Component {
           />
           <Route
             path="/addProduct"
+            exact
             render={props => (
               <AddProduct
-                {...props}
                 userId={this.state.userId}
                 token={this.state.token}
               />
             )}
           />
-          <Redirect to="/" />
         </Switch>
       )
     }
