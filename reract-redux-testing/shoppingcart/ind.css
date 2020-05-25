@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 6px solid black;
+  height: 100vh;
+}
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid red;
+}
