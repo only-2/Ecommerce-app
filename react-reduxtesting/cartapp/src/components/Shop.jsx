@@ -8,6 +8,7 @@ class Home extends Component {
     handleClick = (id) => {
         this.props.addToCart(id);
     }
+    
     render() {
         let itemList = this.props.items.map(item => {
             return (

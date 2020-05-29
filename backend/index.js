@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
-const { randomBytes } = require('crypto');
+// const { randomBytes } = require('crypto');
 // const jwt = require('jsonwebtoken');
 
 
@@ -19,15 +19,19 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use((req, res, next) => {
-  User.findByPk('1')
-    .then(user => {
-      req.user = user;
-      console.log(user);
-      next();
-    })
-    .catch(err => console.log(err));
-});
+// app.use((req, res, next) => {
+//   if (!req.user) {
+//     return next();
+//   }
+//   User.findByPk(req.user.dataValues.id)
+//     .then(user => {
+//       req.user = user;
+//       next();
+//     })
+//     .catch(err => console.log(err));
+// });
+
+let userLoggedIn;
 
 // Will be moved in routes
 app.use('/addProduct', (req, res, next) => {
@@ -49,19 +53,6 @@ app.use('/addProduct', (req, res, next) => {
   res.status(201).send(title);
 })
 
-/*
-  
-  Products - 
-    addProduct
-    getElectronics
-
-  Cart - 
-    addtoCart
-    
-    getCartProducts
-
-*/
-
 
 app.use('/getElectronics', (req, res) => {
   Product.findAll({ where: { category: 'electronics' } })
@@ -72,7 +63,7 @@ app.use('/getElectronics', (req, res) => {
 });
 
 app.use('/getCartProducts', (req, res) => {
-  req.user
+  userLoggedIn
     .getCart()
     .then(cart => {
       return cart
@@ -85,11 +76,29 @@ app.use('/getCartProducts', (req, res) => {
     .catch(err => console.log(err));
 });
 
+
+app.use('/deleteFromCart', (req, res) => {
+  const { prodId } = req.body;
+  userLoggedIn
+    .getCart()
+    .then(cart => {
+      return cart.getProducts({ where: { id: prodId } });
+    })
+    .then(products => {
+      const product = products[0];
+      return product.cartItem.destroy();
+    })
+    .then(result => {
+      res.status(201).send(result);
+    })
+    .catch(err => console.log(err));
+});
+
 app.use('/addtoCart', (req, res) => {
   const { prodId } = req.body;
   let fetchedCart;
   let newQuantity = 1;
-  req.user
+  userLoggedIn
     .getCart()
     .then(cart => {
       fetchedCart = cart;
@@ -121,20 +130,19 @@ app.use('/addtoCart', (req, res) => {
 
 app.use('/auth/signup', (req, res, next) => {
   const { email, name, password } = req.body;
-  console.log(req.body);
-  const userID = randomBytes(4).toString('hex');
+  console.log(password);
   bcrypt
     .hash(password, 12)
     .then(hashedPw => {
       User.create({
-        id: userID,
         email: email,
         password: hashedPw,
         name: name
       })
         .then(result => {
-          console.log(hashedPw)
-          res.status(201).json({ message: 'User created!', userId: userID });
+          // console.log(result)
+          result.createCart();
+          res.status(201).json({ message: 'User created!', userId: result.id });
         })
     })
     .catch(err => {
@@ -150,7 +158,7 @@ app.use('/auth/login', (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
   let loadedUser;
-  User.findOne({ email: email })
+  User.findOne({ where: { email: email } })
     .then(user => {
       if (!user) {
         const error = new Error('A user with this email could not be found.');
@@ -158,8 +166,9 @@ app.use('/auth/login', (req, res, next) => {
         throw error;
       }
       loadedUser = user;
-      console.log(password, user.password)
-      return bcrypt.compare(password, user.password);
+      // console.log(user);
+      // console.log("Hahahahah Pass", password, user.password, email)
+      return bcrypt.compare(password, user.password)
     })
     .then(isEqual => {
       if (!isEqual) {
@@ -167,14 +176,9 @@ app.use('/auth/login', (req, res, next) => {
         error.statusCode = 401;
         throw error;
       }
-      // const token = jwt.sign(
-      //   {
-      //     email: loadedUser.email,
-      //     userId: loadedUser._id.toString()
-      //   },
-      //   'secret_key',
-      //   { expiresIn: '1h' }
-      // );
+      userLoggedIn = loadedUser;
+      // req.user = loadedUser;
+      console.log(req.user.dataValues.id)
       res.status(200).json({ token: 'token', userId: loadedUser.id });
     })
     .catch(err => {
@@ -193,8 +197,8 @@ Cart.belongsToMany(Product, { through: CartItem });
 Product.belongsToMany(Cart, { through: CartItem });
 
 sequelize
-  .sync({ force: true })
-  // .sync()
+  // .sync({ force: true })
+  .sync()
   .then(result => {
     return User.findByPk(1);
   })
@@ -202,17 +206,15 @@ sequelize
     if (!user) {
       // User with password 12345 added
       return User.create({
-        id: '1',
         name: 'admin',
         email: 'test@test.com',
         password: '$2a$12$8p/Q0bCjSCadQ/wPzUJ.VeiBRfQYcRYz1D4BMH42Ys.Tz7QJcrp8S'
-      });
+      })
     }
     return user;
   })
-  .then(user => {
-    // console.log(user);
-    return user.createCart();
+  .then((user) => {
+    user.createCart();
   })
   .then(cart => {
     app.listen(process.env.PORT || 4000, () => {

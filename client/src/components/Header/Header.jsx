@@ -21,27 +21,26 @@ class Header extends Component {
         })
     }
     render() {
+        let isAdmin = true;
         return (
             <div>
                 <header>
                     <NavLink exact to="/"><img className="nav-img" src="/logo.png" alt="logo" /></NavLink>
                     <nav>
                         <ul className="nav__links">
+                            <li><button onClick={this.props.logout} className="auth-btn-nav">
+                                Logout
+                            </button></li>
                             <li><NavLink exact to="/products">
                                 <span role="img" aria-label="">🛍️ </span> Products
                             </NavLink></li>
-                            <li><NavLink exact to="/products">
-                                <span role="img" aria-label="">🏬 </span> Products
-                            </NavLink></li>
-                            <li><NavLink exact to="/adminProduct">
-                                <span role="img" aria-label="">📜 </span>Add Product
-                            </NavLink></li>
-                            <li><NavLink exact to="/cart">
+                            {isAdmin && <li><NavLink exact to="/admin">
+                                <span role="img" aria-label="">📜 </span>Admin Power
+                            </NavLink></li>}
+                            <li><NavLink exact to="/viewcart">
                                 <span role="img" aria-label="">🛒 </span>Cart
                             </NavLink></li>
-                            <li><NavLink exact to="/logout">
-                                <span role="img" aria-label="">🔒 </span>Logout
-                            </NavLink></li>
+
                         </ul>
                     </nav>
                     <p onClick={this.openNav} className="menu cta">Menu</p>
@@ -50,16 +49,16 @@ class Header extends Component {
                 <div style={{ width: this.state.wid }} className="overlay">
                     <a className="close" onClick={this.closeNav}>&times;</a>
                     <div className="overlay__content">
-                        <NavLink exact to="/shop">
+                        <NavLink exact to="/">
                             <span role="img" aria-label="">🛍️</span> Shop
                         </NavLink>
                         <NavLink exact to="/products">
                             <span role="img" aria-label="">🏬</span> Products
                         </NavLink>
-                        <NavLink exact to="/adminProduct">
+                        {isAdmin && <NavLink exact to="/adminProduct">
                             <span role="img" aria-label="">📜</span>Add Product
-                        </NavLink>
-                        <NavLink exact to="/cart">
+                        </NavLink>}
+                        <NavLink exact to="/viewcart">
                             <span role="img" aria-label="">🛒</span>Cart
                         </NavLink>
                     </div>

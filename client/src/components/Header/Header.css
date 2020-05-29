@@ -3,7 +3,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 10px 10%;
-  background-color: rgb(33, 87, 236, 0.92);
+  background-color: #2874f0;
 }
 @media (max-width: 860px) {
   header {
@@ -15,7 +15,6 @@ nav {
   order: 1;
   align-items: center;
   margin: 0;
-  margin-top: 10px;
 }
 
 .nav__links a,
@@ -31,11 +30,22 @@ nav {
   list-style: none;
   display: flex;
   justify-content: center;
-  font-size: 16px;
+  font-size: 18px;
+}
+.auth-btn-nav {
+  font-size: 20px;
+  color: #2874f0;
+  font-weight: 500;
+  background-color: #fff;
+  cursor: pointer;
+  border-radius: 2px;
+  height: 32px;
+  padding: 5px 40px;
+  border: 1px solid #dbdbdb;
 }
 
 .nav__links li {
-  padding: 0px 20px;
+  padding: 4px 20px;
 }
 
 .nav__links li:nth-child(1) {
@@ -62,7 +72,9 @@ nav {
   order: 2;
   margin: 7px;
   padding: 9px 25px;
-  background-color: #f8b24f;
+  background-color: #fff;
+  font-size: 20px;
+  color: #2874f0;
   border: none;
   border-radius: 50px;
   cursor: pointer;

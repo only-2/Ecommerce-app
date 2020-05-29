@@ -4,9 +4,11 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import "./index.css";
 import Home from "./pages/Home/Home";
-import AddProduct from "./pages/AddProduct/AddProduct";
+import AddProduct from "./pages/admin/Admin";
 import Signup from "./pages/auth/Signup";
 import Login from "./pages/auth/Login";
+import Products from './pages/Products/Products';
+import Cart from './pages/Cart/Cart';
 
 
 class App extends React.Component {
@@ -152,6 +154,7 @@ class App extends React.Component {
             />
           )}
         />
+        <Redirect to="/" />
       </Switch>
     );
     if (this.state.isAuth) {
@@ -161,16 +164,43 @@ class App extends React.Component {
             path="/"
             exact
             render={props => (
-              <Home userId={this.state.userId} token={this.state.token} />
+              <Home
+                userId={this.state.userId}
+                token={this.state.token}
+                logout={this.logoutHandler}
+              />
             )}
           />
           <Route
-            path="/addProduct"
+            path="/admin"
             exact
             render={props => (
               <AddProduct
                 userId={this.state.userId}
                 token={this.state.token}
+                logout={this.logoutHandler}
+              />
+            )}
+          />
+          <Route
+            path="/products"
+            exact
+            render={props => (
+              <Products
+                userId={this.state.userId}
+                token={this.state.token}
+                logout={this.logoutHandler}
+              />
+            )}
+          />
+          <Route
+            path="/viewcart"
+            exact
+            render={props => (
+              <Cart
+                userId={this.state.userId}
+                token={this.state.token}
+                logout={this.logoutHandler}
               />
             )}
           />

@@ -7,7 +7,7 @@ class Home extends Component {
     render() {
         return (
             <div className="Home">
-                <Header />
+                <Header logout={this.props.logout} />
                 <Slider />
                 <Category />
             </div>
