@@ -14,13 +14,13 @@ const mobRegex = RegExp(
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
   // validate form errors being empty
-  Object.values(formErrors).forEach(val => {
-    val.length > 0 && (valid = false);
-  });
-  // validate the form was filled out
-  Object.values(rest).forEach(val => {
-    val === null && (valid = false);
-  });
+  // Object.values(formErrors).forEach(val => {
+  //   val.length > 0 && (valid = false);
+  // });
+  // // validate the form was filled out
+  // Object.values(rest).forEach(val => {
+  //   val === null && (valid = false);
+  // });
   return valid;
 };
 
@@ -47,20 +47,21 @@ class Register extends Component {
     };
   }
 
-  // handleSubmit = e => {
-  //   e.preventDefault();
-  //   if (formValid(this.state)) {
-  //     console.log(`
-  //       --SUBMITTING--
-  //       First Name: ${this.state.firstName}
-  //       Last Name: ${this.state.lastName}
-  //       Email: ${this.state.email}
-  //       Password: ${this.state.password}
-  //     `);
-  //   } else {
-  //     console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
-  //   }
-  // };
+  handleSubmit = e => {
+    e.preventDefault();
+    if (formValid(this.state)) {
+      console.log(`
+        --SUBMITTING--
+        First Name: ${this.state.firstName}
+        Last Name: ${this.state.lastName}
+        Email: ${this.state.email}
+        Password: ${this.state.password}
+      `);
+      this.props.onSignup(e, this.state);
+    } else {
+      console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
+    }
+  };
 
   handleChange = e => {
     e.preventDefault();
@@ -113,7 +114,7 @@ class Register extends Component {
       <div className="wrapper" >
         <div className="form-wrapper">
           <h1 className="auth-h1">Create Account</h1>
-          <form className="auth-form" onSubmit={e => this.props.onSignup(e, this.state)}>
+          <form className="auth-form" onSubmit={this.handleSubmit}>
             <div className="firstName">
               <label htmlFor="firstName" className="">First Name</label>
               <input

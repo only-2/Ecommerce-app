@@ -9,9 +9,13 @@ const User = sequelize.define('user', {
         autoIncrement: true,
         primaryKey: true
     },
-    name: Sequelize.STRING,
+    firstName: Sequelize.STRING,
+    lastName: Sequelize.STRING,
     email: Sequelize.STRING,
-    password: Sequelize.STRING
+    password: Sequelize.STRING,
+    contact: Sequelize.INTEGER,
+    address: Sequelize.STRING,
+    isAdmin: Sequelize.BOOLEAN
 });
 
 module.exports = User;

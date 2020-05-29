@@ -8,14 +8,14 @@ const emailRegex = RegExp(
 
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
-  // validate form errors being empty
-  Object.values(formErrors).forEach(val => {
-    val.length > 0 && (valid = false);
-  });
-  // validate the form was filled out
-  Object.values(rest).forEach(val => {
-    val === null && (valid = false);
-  });
+  // // validate form errors being empty
+  // Object.values(formErrors).forEach(val => {
+  //   val.length > 0 && (valid = false);
+  // });
+  // // validate the form was filled out
+  // Object.values(rest).forEach(val => {
+  //   val === null && (valid = false);
+  // });
   return valid;
 };
 
@@ -32,18 +32,22 @@ class Login extends Component {
     };
   }
 
-  // handleSubmit = e => {
-  //   e.preventDefault();
-  //   if (formValid(this.state)) {
-  //     console.log(`
-  //       --SUBMITTING--     
-  //       Email: ${this.state.email}
-  //       Password: ${this.state.password}
-  //     `);
-  //   } else {
-  //     console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
-  //   }
-  // };
+  handleSubmit = e => {
+    e.preventDefault();
+    if (formValid(this.state)) {
+      console.log(`
+        --SUBMITTING--     
+        Email: ${this.state.email}
+        Password: ${this.state.password}
+      `);
+      this.props.onLogin(e, {
+        email: this.state.email,
+        password: this.state.password
+      })
+    } else {
+      console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
+    }
+  };
 
   handleChange = e => {
     e.preventDefault();
@@ -75,13 +79,7 @@ class Login extends Component {
       <div className="wrapper" >
         <div className="form-wrapper">
           <h1 className="auth-h1">Login</h1>
-          <form onSubmit={e =>
-            this.props.onLogin(e, {
-              email: this.state.email,
-              password: this.state.password
-            })
-          } >
-
+          <form onSubmit={this.handleSubmit} >
             <div className="email">
               <label htmlFor="email">Email</label>
               <input

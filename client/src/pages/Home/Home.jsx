@@ -7,7 +7,7 @@ class Home extends Component {
     render() {
         return (
             <div className="Home">
-                <Header logout={this.props.logout} />
+                <Header logout={this.props.logout} isAdmin={this.props.isAdmin}/>
                 <Slider />
                 <Category />
             </div>

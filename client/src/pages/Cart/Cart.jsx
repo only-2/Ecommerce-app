@@ -38,7 +38,7 @@ class Cart extends Component {
             return (
                 <div className="product" key={item.id}>
                     <div className="product-image">
-                        <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg" />
+                        <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg" alt={item.title}/>
                     </div>
                     <div className="product-details">
                         <div className="product-title">{item.title}</div>
@@ -62,7 +62,7 @@ class Cart extends Component {
 
         return (
             <div className="cart-overall">
-                <Header logout={this.props.logout} />
+                <Header logout={this.props.logout} isAdmin={this.props.isAdmin}/>
                 <h1>Shopping Cart</h1>
 
                 <div className="shopping-cart">

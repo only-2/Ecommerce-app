@@ -66,7 +66,7 @@ class Products extends Component {
 
         return (
             <div>
-                <Header logout={this.props.logout}/>
+                <Header logout={this.props.logout} isAdmin={this.props.isAdmin}/>
                 <h1 className="center">Our items</h1>
                 <ul className="cards">
                     {itemList}

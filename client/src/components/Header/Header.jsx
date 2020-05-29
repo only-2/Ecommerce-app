@@ -21,7 +21,6 @@ class Header extends Component {
         })
     }
     render() {
-        let isAdmin = true;
         return (
             <div>
                 <header>
@@ -34,7 +33,7 @@ class Header extends Component {
                             <li><NavLink exact to="/products">
                                 <span role="img" aria-label="">🛍️ </span> Products
                             </NavLink></li>
-                            {isAdmin && <li><NavLink exact to="/admin">
+                            {this.props.isAdmin && <li><NavLink exact to="/admin">
                                 <span role="img" aria-label="">📜 </span>Admin Power
                             </NavLink></li>}
                             <li><NavLink exact to="/viewcart">
@@ -55,7 +54,7 @@ class Header extends Component {
                         <NavLink exact to="/products">
                             <span role="img" aria-label="">🏬</span> Products
                         </NavLink>
-                        {isAdmin && <NavLink exact to="/adminProduct">
+                        {this.props.isAdmin && <NavLink exact to="/adminProduct">
                             <span role="img" aria-label="">📜</span>Add Product
                         </NavLink>}
                         <NavLink exact to="/viewcart">

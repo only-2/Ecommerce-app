@@ -129,15 +129,19 @@ app.use('/addtoCart', (req, res) => {
 
 
 app.use('/auth/signup', (req, res, next) => {
-  const { email, name, password } = req.body;
-  console.log(password);
+  const { email, firstName, lastName, password, contact, dob, address } = req.body;
+  console.log(firstName,password);
   bcrypt
     .hash(password, 12)
     .then(hashedPw => {
       User.create({
         email: email,
         password: hashedPw,
-        name: name
+        isAdmin: false,
+        firstName: firstName,
+        lastName: lastName,
+        contact: contact,
+        address: address
       })
         .then(result => {
           // console.log(result)
@@ -157,7 +161,6 @@ app.use('/auth/login', (req, res, next) => {
   console.log("In login");
   const email = req.body.email;
   const password = req.body.password;
-  let loadedUser;
   User.findOne({ where: { email: email } })
     .then(user => {
       if (!user) {
@@ -165,7 +168,7 @@ app.use('/auth/login', (req, res, next) => {
         error.statusCode = 401;
         throw error;
       }
-      loadedUser = user;
+      userLoggedIn = user;
       // console.log(user);
       // console.log("Hahahahah Pass", password, user.password, email)
       return bcrypt.compare(password, user.password)
@@ -176,10 +179,7 @@ app.use('/auth/login', (req, res, next) => {
         error.statusCode = 401;
         throw error;
       }
-      userLoggedIn = loadedUser;
-      // req.user = loadedUser;
-      console.log(req.user.dataValues.id)
-      res.status(200).json({ token: 'token', userId: loadedUser.id });
+      res.status(200).json({ token: 'token', userId: userLoggedIn.id, isAdmin: userLoggedIn.isAdmin });
     })
     .catch(err => {
       if (!err.statusCode) {
@@ -197,8 +197,8 @@ Cart.belongsToMany(Product, { through: CartItem });
 Product.belongsToMany(Cart, { through: CartItem });
 
 sequelize
-  // .sync({ force: true })
-  .sync()
+  .sync({ force: true })
+  // .sync()
   .then(result => {
     return User.findByPk(1);
   })
@@ -206,8 +206,9 @@ sequelize
     if (!user) {
       // User with password 12345 added
       return User.create({
-        name: 'admin',
+        firstName: 'admin',
         email: 'test@test.com',
+        isAdmin: true,
         password: '$2a$12$8p/Q0bCjSCadQ/wPzUJ.VeiBRfQYcRYz1D4BMH42Ys.Tz7QJcrp8S'
       })
     }
