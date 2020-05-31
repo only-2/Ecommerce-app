@@ -36,16 +36,16 @@ let userLoggedIn;
 // Will be moved in routes
 app.use('/addProduct', (req, res, next) => {
   const { title, imageUrl, Price, Desc, category } = req.body;
-  console.log(req.body)
+  // console.log(req.body)
   Product.create({
     title: title,
     imageUrl: imageUrl,
     price: Price,
-    category: 'Electronics',
+    category: category,
     description: Desc
   })
     .then(result => {
-      console.log(result);
+      // console.log(result);
     })
     .catch(err => {
       console.log(err);
@@ -56,6 +56,27 @@ app.use('/addProduct', (req, res, next) => {
 
 app.use('/getElectronics', (req, res) => {
   Product.findAll({ where: { category: 'electronics' } })
+    .then(product => {
+      res.send(product);
+    })
+    .catch(err => console.log(err));
+});
+app.use('/getBooks', (req, res) => {
+  Product.findAll({ where: { category: 'books' } })
+    .then(product => {
+      res.send(product);
+    })
+    .catch(err => console.log(err));
+});
+app.use('/getMensfashion', (req, res) => {
+  Product.findAll({ where: { category: 'menswear' } })
+    .then(product => {
+      res.send(product);
+    })
+    .catch(err => console.log(err));
+});
+app.use('/getWomensfashion', (req, res) => {
+  Product.findAll({ where: { category: 'womenswear' } })
     .then(product => {
       res.send(product);
     })
@@ -204,7 +225,7 @@ sequelize
   })
   .then(user => {
     if (!user) {
-      // User with password 12345 added
+      // Admin user with password 12345 added
       return User.create({
         firstName: 'admin',
         email: 'test@test.com',

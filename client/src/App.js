@@ -7,6 +7,7 @@ import Signup from "./pages/auth/Signup";
 import Login from "./pages/auth/Login";
 import Products from './pages/Products/Products';
 import Cart from './pages/Cart/Cart';
+import Category from "./pages/Category/Category";
 
 
 class App extends React.Component {
@@ -16,7 +17,8 @@ class App extends React.Component {
             isAuth: false,
             token: null,
             userId: null,
-            isAdmin: false
+            isAdmin: false,
+            products: []
         };
     }
 
@@ -143,6 +145,9 @@ class App extends React.Component {
             this.logoutHandler();
         }, milliseconds);
     };
+    updateProducts = prod => {
+        this.setState({ products: prod });
+    }
 
     render() {
         // If not Logged in
@@ -207,6 +212,7 @@ class App extends React.Component {
                                 token={this.state.token}
                                 logout={this.logoutHandler}
                                 isAdmin={this.state.isAdmin}
+                                products={this.state.products}
                             />
                         )}
                     />
@@ -219,6 +225,19 @@ class App extends React.Component {
                                 token={this.state.token}
                                 logout={this.logoutHandler}
                                 isAdmin={this.state.isAdmin}
+                            />
+                        )}
+                    />
+                    <Route
+                        path="/category"
+                        exact
+                        render={props => (
+                            <Category
+                                userId={this.state.userId}
+                                token={this.state.token}
+                                logout={this.logoutHandler}
+                                isAdmin={this.state.isAdmin}
+                                updateProd={this.updateProducts}
                             />
                         )}
                     />

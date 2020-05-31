@@ -30,7 +30,7 @@ class Header extends Component {
                             <li><button onClick={this.props.logout} className="auth-btn-nav">
                                 Logout
                             </button></li>
-                            <li><NavLink exact to="/products">
+                            <li><NavLink exact to="/category">
                                 <span role="img" aria-label="">🛍️ </span> Products
                             </NavLink></li>
                             {this.props.isAdmin && <li><NavLink exact to="/admin">

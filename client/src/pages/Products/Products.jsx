@@ -5,22 +5,6 @@ import axios from 'axios';
 import './Products.css';
 
 class Products extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            products: []
-        }
-    }
-
-    getProducts = async () => {
-        const res = await axios.get('http://localhost:4000/getElectronics');
-        console.log(res.data)
-        this.setState({ products: res.data });
-    }
-
-    componentWillMount() {
-        this.getProducts();
-    }
 
     addToCart = async () => {
         const res = await axios.get('http://localhost:4000/addtoCart');
@@ -41,7 +25,7 @@ class Products extends Component {
     }
 
     render() {
-        let itemList = this.state.products.map(item => {
+        let itemList = this.props.products.map(item => {
             return (
                 <li className="cards_item" key={item.id}>
                     <div className="card">
@@ -71,7 +55,6 @@ class Products extends Component {
                 <ul className="cards">
                     {itemList}
                 </ul>
-
             </div>
         );
     }

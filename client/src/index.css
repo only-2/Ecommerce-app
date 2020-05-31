@@ -7,54 +7,10 @@
 }
 /* Body */
 body {
-  background-color: white;
+  background-color: #f9fcfb;
   font-family: "Josefin Sans", sans-serif;
 }
-/* Navbar css */
-/* #navbar {
-  align-items: center;
-  position: sticky;
-  top: 0px;
-  z-index: 10;
-}
 
-#navbar::before {
-  content: "";
-  background-color: rgb(33, 87, 236);
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  height: 100%;
-  width: 100%;
-  z-index: -1;
-  opacity: 1;
-}
-
-#navbar ul {
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  padding: 14px;
-}
-
-#navbar ul li {
-  list-style: none;
-  font-size: 1.3rem;
-}
-
-#navbar ul li a {
-  color: white;
-  display: block;
-  padding: 3px 22px;
-  border-radius: 20px;
-  text-decoration: none;
-  transition: all ease-in-out 0.4s;
-}
-
-#navbar ul li a:hover {
-  color: black;
-  background-color: white;
-} */
 .home {
   height: 81vh;
   overflow: hidden;
@@ -192,42 +148,8 @@ body {
 }
 
 /*responsive*/
-@media (max-width: 767px) {
+@media (max-width: 667px) {
   .controls {
     display: none;
   }
-}
-.category {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  height: 646px;
-  border: 2px solid red;
-}
-.category div {
-  border: 2px solid black;
-  height: 322px;
-  width: 494.9px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  transition: all 0.4s ease-in-out;
-}
-.category div:hover {
-  transform: scale(1.1);
-}
-.category div .btn {
-  border: 2px solid blue;
-  height: 38px;
-  width: 124px;
-  background: black;
-  color: white;
-  font-family: "Josefin Sans", sans-serif;
-  font-size: 16px;
-  opacity: 1;
-  transition: background-color 0.4s ease-in-out;
-}
-.category div .btn:hover {
-  background-color: white;
-  color: black;
 }

@@ -52,7 +52,7 @@ function resetTimer() {
 
 function autoPlay() {
   nextSlide();
-  updateCircleIndicator();
+  // updateCircleIndicator();
 }
 
 let timer = setInterval(autoPlay, 4000);

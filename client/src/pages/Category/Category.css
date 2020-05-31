@@ -1,0 +1,74 @@
+.item1 {
+  background: url("https://images.financialexpress.com/2016/08/samsung-festival-L.jpg");
+  background-size: contain;
+}
+.item2 {
+  background: url("https://beebom.com/wp-content/uploads/2018/04/flipkart-world-book.jpg");
+  background-size: contain;
+}
+.item3 {
+  background: url("https://cdn11.bigcommerce.com/s-003c4/product_images/uploaded_images/mens-category-page-raglan.jpg");
+  background-size: contain;
+}
+.item4 {
+  background: url("https://s3.ap-south-1.amazonaws.com/affiliatecubber/images/offer_banners/flipkart-latest-womens-wear-1565328774.png");
+  background-size: contain;
+}
+.item5 {
+  background: url("https://rukminim1.flixcart.com/flap/960/960/image/b34e13.jpg?q=75");
+  background-size: contain;
+}
+.item6 {
+  background: url("https://paisebachaoindia.com/wp-content/uploads/2016/02/85.png");
+  background-size: contain;
+}
+
+.category {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: space-between;
+  /* height: 646px; */
+  border: 2px solid #fff;
+}
+.category div {
+  margin: 1%;
+  border: 2px solid black;
+  height: 322px;
+  width: 31%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  transition: all 0.4s ease-in-out;
+  /* background-repeat: no-repeat;
+  background-position: center; */
+}
+@media (max-width: 900px) {
+  .category div {
+    width: 48%;
+  }
+}
+@media (max-width: 500px) {
+  .category div {
+    width: 100%;
+  }
+}
+.category div:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+.category div .btn {
+  border: 2px solid blue;
+  height: 38px;
+  width: 124px;
+  background: #fff;
+  color: black;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 16px;
+  opacity: 1;
+  transition: background-color 0.4s ease-in-out;
+}
+.category div .btn:hover {
+  background-color: white;
+  color: black;
+}
