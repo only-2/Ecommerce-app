@@ -1,0 +1,183 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
+/* Global css */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+/* Body */
+body {
+  background-color: white;
+  font-family: "Josefin Sans", sans-serif;
+}
+.cartcontainer {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+.rightimg {
+  float: right;
+}
+.carthead {
+  border: 2px solid rgb(7, 182, 240);
+  font-size: 80px;
+  display: inline-block;
+  margin-bottom: 40px;
+}
+.cartitems {
+  border: 2px solid red;
+  margin-left: 20px;
+}
+.cartitem {
+  border: 2px solid green;
+  display: flex;
+  margin-bottom: 20px;
+
+  transition: 0.4s all ease-in-out;
+}
+.cartitem:hover {
+  box-shadow: 4px 7px 10px 0px rgba(0, 0, 0, 0.75);
+  transform: scale(1.01);
+}
+.cartitem img {
+  height: 200px;
+  width: 200px;
+}
+.cartcontent {
+  border: 2px solid fuchsia;
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.cartcontent p {
+  font-size: 20px;
+}
+.cover {
+  object-fit: cover;
+}
+.checkout {
+  border: 2px solid yellow;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.addbtn,
+.subbtn {
+  /* box-shadow: 0px 0px 0px 0px #3dc21b; */
+
+  background-color: white;
+  outline: none;
+  border-radius: 42px;
+  border: 2px solid black;
+  /* display: inline-block; */
+  cursor: pointer;
+  color: black;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  width: 40px;
+  height: 40px;
+  padding: 6px 10px;
+  text-align: center;
+  text-decoration: none;
+}
+.remove {
+  border: 1px solid black;
+  outline: none;
+  height: 40px;
+  width: 102px;
+  background-color: white;
+  font-family: "Josefin Sans", sans-serif;
+  border-radius: 20px;
+  text-align: center;
+  transition: all 0.4s ease-in-out;
+  float: right;
+}
+.remove:hover {
+  background-color: rgb(245, 33, 33);
+  color: white;
+}
+.addbtn:hover,
+.subbtn:hover {
+  background-color: #2874f0;
+  color: white;
+}
+.inp {
+  width: 40px;
+  height: 36px;
+  margin-left: 9px;
+  margin-right: 9px;
+  text-align: center;
+}
+.chcontainer {
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  margin-top: 80px;
+}
+.pricedetails {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 34px;
+}
+.price,
+.total,
+.delivery {
+  display: inline-block;
+  font-size: 30px;
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.prtotal,
+.del,
+.tot {
+  float: left;
+}
+.amount,
+.delamount,
+.totamount {
+  float: right;
+  font-weight: bold;
+}
+.chbtn {
+  background-color: #fb641b;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  border: 1px solid;
+  height: 45px;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: bold;
+  transition: all 0.4s ease-in;
+  box-shadow: 4px 7px 10px 0px rgba(0, 0, 0, 0.75);
+}
+.chbtn span {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 20px;
+  position: relative;
+  transition: 0.5s;
+}
+
+.chbtn span:after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.chbtn:hover span {
+  padding-right: 25px;
+}
+
+.chbtn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
