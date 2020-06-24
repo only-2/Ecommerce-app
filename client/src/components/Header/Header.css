@@ -5,7 +5,7 @@ header {
   padding: 10px 10%;
   background-color: #2874f0;
 }
-@media (max-width: 860px) {
+@media (max-width: 1100px) {
   header {
     padding: 10px 5%;
   }
@@ -141,7 +141,7 @@ nav {
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 900px) {
   .nav__links,
   .cta {
     display: none;

@@ -38,7 +38,7 @@ class Cart extends Component {
             return (
                 <div className="product" key={item.id}>
                     <div className="product-image">
-                        <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg" alt={item.title}/>
+                        <img src={item.imageUrl} alt={item.title}/>
                     </div>
                     <div className="product-details">
                         <div className="product-title">{item.title}</div>
@@ -53,7 +53,7 @@ class Cart extends Component {
                             Remove
                     </button>
                     </div>
-                    {sum += item.price * item.cartItem.quantity}
+                    <div style={{display: 'none'}}>{sum += item.price * item.cartItem.quantity}</div>
                     <div className="product-line-price">{item.price * item.cartItem.quantity}</div>
                 </div>
             )
