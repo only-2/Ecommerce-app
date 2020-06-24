@@ -25,7 +25,7 @@ class Slider extends Component {
                         }}>
                         <div className="container">
                             <div className="caption">
-                                <h1>1. Winter Collection 2020</h1>
+                                <h2>1. Winter Collection 2020</h2>
                                 <p>Lorem ipsum dummy text goes here.</p>
                                 <NavLink exact to="/viewcart">Shop Now</NavLink>
                             </div>
@@ -38,7 +38,7 @@ class Slider extends Component {
                         }}>
                         <div className="container">
                             <div className="caption">
-                                <h1>2. Winter Collection 2020</h1>
+                                <h2>2. Winter Collection 2020</h2>
                                 <p>Lorem ipsum dummy text goes here.</p>
                                 <NavLink exact to="/viewcart">Shop Now</NavLink>
                             </div>
@@ -51,7 +51,7 @@ class Slider extends Component {
                         }}>
                         <div className="container">
                             <div className="caption">
-                                <h1>3. Winter Collection 2020</h1>
+                                <h2>3. Winter Collection 2020</h2>
                                 <p>Lorem ipsum dummy text goes here.</p>
                                 <NavLink exact to="/viewcart">Shop Now</NavLink>
                             </div>
