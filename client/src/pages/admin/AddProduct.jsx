@@ -86,7 +86,7 @@ class Addpr extends Component {
     render() {
         const { formErrors } = this.state;
         return (
-            <div className="adwrapper" >
+            <div className="wrapper" >
                 <div className="form-wrapper">
                     <h1>Add Product</h1>
                     <form onSubmit={this.handleSubmit} noValidate>
