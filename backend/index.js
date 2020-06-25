@@ -35,8 +35,9 @@ let userLoggedIn;
 
 // Will be moved in routes
 app.use('/addProduct', (req, res, next) => {
-  const { title, imageUrl, Price, Desc, category } = req.body;
+  let { title, imageUrl, Price, Desc, category } = req.body;
   // console.log(req.body)
+  if(!imageUrl) imageUrl = "https://picsum.photos/500/300/?image=10";
   Product.create({
     title: title,
     imageUrl: imageUrl,
@@ -53,6 +54,9 @@ app.use('/addProduct', (req, res, next) => {
   res.status(201).send(title);
 })
 
+app.use('/getProfile', (req, res) => {
+  res.send(userLoggedIn);
+});
 
 app.use('/getElectronics', (req, res) => {
   Product.findAll({ where: { category: 'electronics' } })
@@ -151,7 +155,7 @@ app.use('/addtoCart', (req, res) => {
 
 app.use('/auth/signup', (req, res, next) => {
   const { email, firstName, lastName, password, contact, dob, address } = req.body;
-  console.log(firstName,password);
+  console.log(firstName, password);
   bcrypt
     .hash(password, 12)
     .then(hashedPw => {
@@ -162,7 +166,8 @@ app.use('/auth/signup', (req, res, next) => {
         firstName: firstName,
         lastName: lastName,
         contact: contact,
-        address: address
+        address: address,
+        DOB: dob
       })
         .then(result => {
           // console.log(result)

@@ -8,6 +8,7 @@ import Login from "./pages/auth/Login";
 import Products from './pages/Products/Products';
 import Cart from './pages/Cart/Cart';
 import Category from "./pages/Category/Category";
+import Profile from "./pages/Profile/Profile";
 
 
 class App extends React.Component {
@@ -200,6 +201,7 @@ class App extends React.Component {
                                 userId={this.state.userId}
                                 token={this.state.token}
                                 logout={this.logoutHandler}
+                                isAdmin={this.state.isAdmin}
                             />
                         )}
                     />
@@ -233,6 +235,19 @@ class App extends React.Component {
                         exact
                         render={props => (
                             <Category
+                                userId={this.state.userId}
+                                token={this.state.token}
+                                logout={this.logoutHandler}
+                                isAdmin={this.state.isAdmin}
+                                updateProd={this.updateProducts}
+                            />
+                        )}
+                    />
+                    <Route
+                        path="/Profile"
+                        exact
+                        render={props => (
+                            <Profile
                                 userId={this.state.userId}
                                 token={this.state.token}
                                 logout={this.logoutHandler}

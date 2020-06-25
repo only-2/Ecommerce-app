@@ -30,7 +30,7 @@ class Products extends Component {
                 <li className="cards_item" key={item.id}>
                     <div className="card">
                         <div className="card_image">
-                            <img src="https://picsum.photos/500/300/?image=10" alt={item.title} /></div>
+                            <img src={item.imageUrl} alt={item.title} /></div>
                         <div className="card_content">
                             <h2 className="card_title">{item.title}</h2>
                             <p className="card_text">{item.desc}</p>
