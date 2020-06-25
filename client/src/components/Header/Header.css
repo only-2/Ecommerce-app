@@ -45,11 +45,11 @@ nav {
 }
 
 .nav__links li {
-  padding: 4px 20px;
+  padding: 5px 20px;
 }
 
 .nav__links li:nth-child(1) {
-  padding: 0 20px 0 0;
+  padding: 5px 20px 0 0;
 }
 
 .nav__links li a {

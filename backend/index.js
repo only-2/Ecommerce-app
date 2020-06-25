@@ -205,7 +205,12 @@ app.use('/auth/login', (req, res, next) => {
         error.statusCode = 401;
         throw error;
       }
-      res.status(200).json({ token: 'token', userId: userLoggedIn.id, isAdmin: userLoggedIn.isAdmin });
+      res.status(200).json({ 
+        token: 'token',
+        userId: userLoggedIn.id, 
+        isAdmin: userLoggedIn.isAdmin,
+        name: userLoggedIn.firstName
+      });
     })
     .catch(err => {
       if (!err.statusCode) {

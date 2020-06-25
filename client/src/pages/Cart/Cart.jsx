@@ -62,7 +62,7 @@ class Cart extends Component {
 
         return (
             <div className="cart-overall">
-                <Header logout={this.props.logout} isAdmin={this.props.isAdmin}/>
+                <Header logout={this.props.logout} userinfo={this.props.userinfo}/>
                 <h1>Shopping Cart</h1>
 
                 <div className="shopping-cart">

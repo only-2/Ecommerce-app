@@ -38,7 +38,7 @@ class Category extends Component {
     render() {
         return (
             <div>
-            <Header logout={this.props.logout} isAdmin={this.props.isAdmin}/>
+            <Header logout={this.props.logout} userinfo={this.props.userinfo}/>
                 <h1>EXPLORE INDIA'S LARGEST ONLINE STORE</h1>
                 <section className="category" id="category">
                     <div className="item1">

@@ -17,8 +17,11 @@ class App extends React.Component {
         this.state = {
             isAuth: false,
             token: null,
-            userId: null,
-            isAdmin: false,
+            userinfo: {
+                name: '',
+                userId: null,
+                isAdmin: false,
+            },
             products: []
         };
     }
@@ -46,8 +49,17 @@ class App extends React.Component {
         }
         const userId = localStorage.getItem('userId');
         const isAdmin = localStorage.getItem('isAdmin');
+        const name = localStorage.getItem('name');
         const remainingMilliseconds = new Date(expiryDate).getTime() - new Date().getTime();
-        this.setState({ isAuth: true, token: token, userId: userId, isAdmin: isAdmin });
+        this.setState({
+            isAuth: true,
+            userinfo: {
+                name: name,
+                userId: userId,
+                isAdmin: isAdmin,
+            },
+            token: token
+        });
         this.setAutoLogout(remainingMilliseconds);
     }
     logoutHandler = () => {
@@ -76,14 +88,19 @@ class App extends React.Component {
                 return res.json();
             })
             .then(resData => {
-                console.log(resData);
+                // console.log(resData);
                 this.setState({
                     isAuth: true,
-                    token: resData.token,
-                    userId: resData.userId,
-                    isAdmin: resData.isAdmin
+                    userinfo: {
+                        name: resData.name,
+                        userId: resData.userId,
+                        isAdmin: resData.isAdmin,
+                    },
+                    token: resData.token
                 });
+                console.log(this.state)
                 localStorage.setItem('token', resData.token);
+                localStorage.setItem('name', resData.name);
                 localStorage.setItem('userId', resData.userId);
                 localStorage.setItem('isAdmin', resData.isAdmin);
                 const remainingMilliseconds = 60 * 60 * 1000;
@@ -186,10 +203,8 @@ class App extends React.Component {
                         exact
                         render={props => (
                             <Home
-                                userId={this.state.userId}
-                                token={this.state.token}
                                 logout={this.logoutHandler}
-                                isAdmin={this.state.isAdmin}
+                                userinfo={this.state.userinfo}
                             />
                         )}
                     />
@@ -198,10 +213,8 @@ class App extends React.Component {
                         exact
                         render={props => (
                             <AddProduct
-                                userId={this.state.userId}
-                                token={this.state.token}
+                                userinfo={this.state.userinfo}
                                 logout={this.logoutHandler}
-                                isAdmin={this.state.isAdmin}
                             />
                         )}
                     />
@@ -210,11 +223,9 @@ class App extends React.Component {
                         exact
                         render={props => (
                             <Products
-                                userId={this.state.userId}
-                                token={this.state.token}
                                 logout={this.logoutHandler}
-                                isAdmin={this.state.isAdmin}
                                 products={this.state.products}
+                                userinfo={this.state.userinfo}
                             />
                         )}
                     />
@@ -223,10 +234,8 @@ class App extends React.Component {
                         exact
                         render={props => (
                             <Cart
-                                userId={this.state.userId}
-                                token={this.state.token}
                                 logout={this.logoutHandler}
-                                isAdmin={this.state.isAdmin}
+                                userinfo={this.state.userinfo}
                             />
                         )}
                     />
@@ -235,10 +244,8 @@ class App extends React.Component {
                         exact
                         render={props => (
                             <Category
-                                userId={this.state.userId}
-                                token={this.state.token}
                                 logout={this.logoutHandler}
-                                isAdmin={this.state.isAdmin}
+                                userinfo={this.state.userinfo}
                                 updateProd={this.updateProducts}
                             />
                         )}
@@ -248,11 +255,8 @@ class App extends React.Component {
                         exact
                         render={props => (
                             <Profile
-                                userId={this.state.userId}
-                                token={this.state.token}
+                                userinfo={this.state.userinfo}
                                 logout={this.logoutHandler}
-                                isAdmin={this.state.isAdmin}
-                                updateProd={this.updateProducts}
                             />
                         )}
                     />

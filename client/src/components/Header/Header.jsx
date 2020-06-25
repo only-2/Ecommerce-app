@@ -31,14 +31,14 @@ class Header extends Component {
                             <li><NavLink exact to="/category">
                                 <span role="img" aria-label="">🛍️ </span> Category
                             </NavLink></li>
-                            {this.props.isAdmin && <li><NavLink exact to="/admin">
+                            {this.props.userinfo.isAdmin && <li><NavLink exact to="/admin">
                                 <span role="img" aria-label="">📜 </span>Admin Power
                             </NavLink></li>}
                             <li><NavLink exact to="/viewcart">
                                 <span role="img" aria-label="">🛒 </span>Cart
                             </NavLink></li>
                             <li><NavLink exact to="/profile">
-                                <span role="img" aria-label="">👨‍💻 </span>Profile
+                                <span role="img" aria-label="">👨‍💻 </span>{"Welocme, "+this.props.userinfo.name}
                             </NavLink></li>
                             <li><button onClick={this.props.logout} className="auth-btn-nav">
                                 Logout
@@ -54,14 +54,14 @@ class Header extends Component {
                         <NavLink exact to="/category">
                             <span role="img" aria-label="">🏬</span> Category
                         </NavLink>
-                        {this.props.isAdmin && <NavLink exact to="/admin">
+                        {this.props.userinfo.isAdmin && <NavLink exact to="/admin">
                             <span role="img" aria-label="">📜</span>Add Product
                         </NavLink>}
                         <NavLink exact to="/viewcart">
                             <span role="img" aria-label="">🛒</span>Cart
                         </NavLink>
                         <NavLink exact to="/profile">
-                            <span role="img" aria-label="">👨‍💻 </span>Profile
+                            <span role="img" aria-label="">👨‍💻 </span>{"hi, "+this.props.userinfo.name}
                         </NavLink>
                         <li><button onClick={this.props.logout} className="auth-btn-nav">
                             Logout

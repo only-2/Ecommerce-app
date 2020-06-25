@@ -21,7 +21,7 @@ class Products extends Component {
             "prodId": prodId
         })
         this.props.history.push('/viewcart')
-        
+
     }
 
     render() {
@@ -30,16 +30,25 @@ class Products extends Component {
                 <li className="cards_item" key={item.id}>
                     <div className="card">
                         <div className="card_image">
-                            <img src="https://picsum.photos/500/300/?image=10" alt={item.title} /></div>
+                            <img src={item.imageUrl} alt={item.title} /></div>
                         <div className="card_content">
                             <h2 className="card_title">{item.title}</h2>
                             <p className="card_text">{item.desc}</p>
                             <p className="price">Price: {item.price}$</p>
                             <button className="prbtn card_btn">Read More</button>
+                            {
+                                this.props.userinfo.isAdmin &&
+                                <NavLink exact to="/cart" className="td-none">
+                                    <button
+                                        className="prbtn card_btn"
+                                        onClick={(e) => this.handleClick(e, item.id)}
+                                    >Delete Product</button>
+                                </NavLink>
+                            }
                             <NavLink exact to="/cart" className="td-none">
                                 <button
                                     className="prbtn card_btn"
-                                    onClick={(e) => this.handleClick(e,item.id)}
+                                    onClick={(e) => this.handleClick(e, item.id)}
                                 >Add to Cart</button>
                             </NavLink>
                         </div>
@@ -50,7 +59,7 @@ class Products extends Component {
 
         return (
             <div>
-                <Header logout={this.props.logout} isAdmin={this.props.isAdmin}/>
+                <Header logout={this.props.logout} userinfo={this.props.userinfo} />
 
                 <h1 className="center">Our items</h1>
                 <ul className="cards">

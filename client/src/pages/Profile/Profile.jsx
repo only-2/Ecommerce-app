@@ -37,10 +37,10 @@ class Home extends Component {
     render() {
         return (
             <div className="Home">
-                <Header logout={this.props.logout} isAdmin={this.props.isAdmin} />
+                <Header logout={this.props.logout} userinfo={this.props.userinfo} />
                 <div id="sc-edprofile">
                     <h1>{this.state.firstName} Profile</h1>
-                    <div class="sc-container">
+                    <div className="sc-container">
                         <input type="text" placeholder= {"First Name: " + this.state.firstName} />
                         <input type="text" placeholder={"Last Name: " + this.state.lastName} />
                         <input type="text" placeholder={"Email: " + this.state.email}/>
