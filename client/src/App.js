@@ -9,6 +9,7 @@ import Products from './pages/Products/Products';
 import Cart from './pages/Cart/Cart';
 import Category from "./pages/Category/Category";
 import Profile from "./pages/Profile/Profile";
+import ProductView from "./pages/ProductView/ProductView";
 
 
 class App extends React.Component {
@@ -22,7 +23,8 @@ class App extends React.Component {
                 userId: null,
                 isAdmin: false,
             },
-            products: []
+            products: [],
+            product: null
         };
     }
 
@@ -166,6 +168,9 @@ class App extends React.Component {
     updateProducts = prod => {
         this.setState({ products: prod });
     }
+    updateSingleProduct = prod => {
+        this.setState({ product: prod });
+    }
 
     render() {
         // If not Logged in
@@ -219,17 +224,6 @@ class App extends React.Component {
                         )}
                     />
                     <Route
-                        path="/products"
-                        exact
-                        render={props => (
-                            <Products
-                                logout={this.logoutHandler}
-                                products={this.state.products}
-                                userinfo={this.state.userinfo}
-                            />
-                        )}
-                    />
-                    <Route
                         path="/viewcart"
                         exact
                         render={props => (
@@ -247,6 +241,29 @@ class App extends React.Component {
                                 logout={this.logoutHandler}
                                 userinfo={this.state.userinfo}
                                 updateProd={this.updateProducts}
+                            />
+                        )}
+                    />
+                    <Route
+                        path="/products"
+                        exact
+                        render={props => (
+                            <Products
+                                logout={this.logoutHandler}
+                                products={this.state.products}
+                                userinfo={this.state.userinfo}
+                                updateSingleProduct={this.updateSingleProduct}
+                            />
+                        )}
+                    />
+                    <Route
+                        path="/product-view"
+                        exact
+                        render={props => (
+                            <ProductView
+                                logout={this.logoutHandler}
+                                product={this.state.product}
+                                userinfo={this.state.userinfo}
                             />
                         )}
                     />

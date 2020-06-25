@@ -14,6 +14,7 @@ class Addpr extends Component {
                 prname: "",
                 prcategory: "",
                 prdesc: "",
+                imageUrl: '',
                 prprice: "",
             },
         };
@@ -36,11 +37,11 @@ class Addpr extends Component {
             'Content-Type': 'application/json'
         })
         console.log(product);
-        this.setState({ 
-            prname: '', 
-            prcategory: '', 
-            prdesc:'', 
-            prprice:'' 
+        this.setState({
+            prname: '',
+            prcategory: '',
+            prdesc: '',
+            prprice: ''
         });
         console.log(this.state);
     }
@@ -62,6 +63,10 @@ class Addpr extends Component {
                     value === "selectcard" ? "Please Select A Valid Product Category" : "";
                 break;
             case "prdesc":
+                formErrors.prdesc =
+                    value.length <= 0 ? "Field Required" : "";
+                break;
+            case "imageUrl":
                 formErrors.prdesc =
                     value.length <= 0 ? "Field Required" : "";
                 break;
@@ -117,6 +122,22 @@ class Addpr extends Component {
                             </select>
                             {formErrors.prcategory.length > 0 && (
                                 <span className="errorMessage">{formErrors.prcategory}</span>
+                            )}
+                        </div>
+                        {/*  Need to be fixed later */}
+                        <div className="prdesc">
+                            <label htmlFor="imageUrl">Product Image</label>
+                            <input
+                                className={formErrors.imageUrl.length > 0 ? "error" : null}
+                                placeholder="Product Image Url"
+                                type="text"
+                                value={this.state.imageUrl}
+                                name="imageUrl"
+                                noValidate
+                                onChange={this.handleChange}
+                            />
+                            {formErrors.imageUrl.length > 0 && (
+                                <span className="errorMessage">{formErrors.imageUrl}</span>
                             )}
                         </div>
                         <div className="prdesc">

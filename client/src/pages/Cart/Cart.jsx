@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
-import Header from '../../components/Header/Header';
 import axios from 'axios';
+import StripeCheckout from "react-stripe-checkout";
+
+import Header from '../../components/Header/Header';
 import './Cart.css';
+
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
 
 class Cart extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            price: 0,
             cartItems: []
         }
     }
@@ -31,6 +38,21 @@ class Cart extends Component {
         this.getCartItems();
     }
 
+    async handleToken(token, price) {
+        // const price = this.state.price;
+        console.log(token,price)
+        const res = await axios.post(
+            "http://localhost:4000/checkout",
+            { token, price }
+        );
+        console.log(res.data.status);
+        if (res.data.status === "success") {
+            toast("Success! Check email for details", { type: "success" });
+        } else {
+            toast("Something went wrong", { type: "error" });
+        }
+    }
+
     render() {
         let sum = 0;
 
@@ -38,7 +60,7 @@ class Cart extends Component {
             return (
                 <div className="product" key={item.id}>
                     <div className="product-image">
-                        <img src={item.imageUrl} alt={item.title}/>
+                        <img src={item.imageUrl} alt={item.title} />
                     </div>
                     <div className="product-details">
                         <div className="product-title">{item.title}</div>
@@ -49,20 +71,19 @@ class Cart extends Component {
                         <input type="number" value={item.cartItem.quantity} min="1" />
                     </div>
                     <div className="product-removal">
-                        <button className="remove-product" onClick={(e) => this.remove(e,item.cartItem.productId)}>
+                        <button className="remove-product" onClick={(e) => this.remove(e, item.cartItem.productId)}>
                             Remove
                     </button>
                     </div>
-                    <div style={{display: 'none'}}>{sum += item.price * item.cartItem.quantity}</div>
+                    <div style={{ display: 'none' }}>{sum += item.price * item.cartItem.quantity}</div>
                     <div className="product-line-price">{item.price * item.cartItem.quantity}</div>
                 </div>
             )
         })
 
-
         return (
             <div className="cart-overall">
-                <Header logout={this.props.logout} userinfo={this.props.userinfo}/>
+                <Header logout={this.props.logout} userinfo={this.props.userinfo} />
                 <h1>Shopping Cart</h1>
 
                 <div className="shopping-cart">
@@ -89,7 +110,7 @@ class Cart extends Component {
                         </div>
                         <div className="totals-item">
                             <label>Shipping</label>
-                            <div className="totals-value" id="cart-shipping">15.00</div>
+                            <div className="totals-value" id="cart-shipping">{5.00 * this.state.cartItems.length}</div>
                         </div>
                         <div className="totals-item totals-item-total">
                             <label>Grand Total</label>
@@ -97,8 +118,13 @@ class Cart extends Component {
                         </div>
                     </div>
 
-                    <button className="checkout">Checkout</button>
-
+                    <StripeCheckout
+                        className="checkout"
+                        stripeKey="pk_test_51Gxt4GIY3uMkMao1o5wDkMtWsbEu4UgosWpYL5qFDXZUTZruG24dCGMPgID56kw8m8pPMRcaF7uISBAbfaGBCqal00Mcuc0lWq"
+                        token={(token) => this.handleToken(token, sum = ((sum + sum * 0.05 + 15)))}
+                        amount={(sum + sum * 0.05 + 15) * 100}
+                        name="Payment Using Card"
+                    />
                 </div>
             </div>
         );

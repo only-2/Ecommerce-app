@@ -3,6 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
+const stripe = require("stripe")("sk_test_51Gxt4GIY3uMkMao1hJpwAhdlXYfFiZZ7yz56i5NpxzpXEqqDYnegl8MVk0XzoYbmRbNNK4JjllqMiHVDtqg290uX00Xc1uwmAG");
+const uuid = require("uuid/v4");
 // const { randomBytes } = require('crypto');
 // const jwt = require('jsonwebtoken');
 
@@ -31,13 +33,56 @@ app.use(cors());
 //     .catch(err => console.log(err));
 // });
 
+app.post("/checkout", async (req, res) => {
+  // console.log("Request:", req.body);
+  let error;
+  let status;
+  try {
+    const { price, token } = req.body;
+    const customer = await stripe.customers.create({
+      email: token.email,
+      source: token.id
+    });
+    const idempotencyKey = uuid();
+    const charge = await stripe.charges.create(
+      {
+        amount: Math.round(price),
+        currency: "usd",
+        customer: customer.id,
+        receipt_email: token.email,
+        description: `Purchased the by Aman Shop`,
+        shipping: {
+          name: 'Jenny Rosen',
+          address: {
+            line1: '510 Townsend St',
+            postal_code: '98140',
+            city: 'San Francisco',
+            state: 'CA',
+            country: 'US',
+          }
+        }
+      },
+      {
+        idempotencyKey
+      }
+    );
+    console.log("Charge:", { charge });
+    status = "success";
+  } catch (error) {
+    console.error("Error:", error);
+    status = "failure";
+  }
+
+  res.json({ error, status });
+});
+
 let userLoggedIn;
 
 // Will be moved in routes
 app.use('/addProduct', (req, res, next) => {
   let { title, imageUrl, Price, Desc, category } = req.body;
   // console.log(req.body)
-  if(!imageUrl) imageUrl = "https://picsum.photos/500/300/?image=10";
+  if (!imageUrl) imageUrl = "https://www.warnersstellian.com/Content/images/product_image_not_available.png";
   Product.create({
     title: title,
     imageUrl: imageUrl,
@@ -97,6 +142,18 @@ app.use('/getCartProducts', (req, res) => {
           res.send(products)
         })
         .catch(err => console.log(err));
+    })
+    .catch(err => console.log(err));
+});
+
+app.use('/deleteProd', (req, res) => {
+  const { userId, prodId } = req.body;
+  Product.findByPk(prodId)
+    .then(product => {
+      return product.destroy();
+    })
+    .then(result => {
+      res.status(201).send({ result: result, status: "success" });
     })
     .catch(err => console.log(err));
 });
@@ -205,9 +262,9 @@ app.use('/auth/login', (req, res, next) => {
         error.statusCode = 401;
         throw error;
       }
-      res.status(200).json({ 
+      res.status(200).json({
         token: 'token',
-        userId: userLoggedIn.id, 
+        userId: userLoggedIn.id,
         isAdmin: userLoggedIn.isAdmin,
         name: userLoggedIn.firstName
       });
@@ -220,6 +277,12 @@ app.use('/auth/login', (req, res, next) => {
     });
 });
 
+app.use('/deleteUser', (req, res) => {
+  const { prodId } = req.body;
+  const result = userLoggedIn.destroy();
+  res.status(201).send(result);
+});
+
 Product.belongsTo(User, { constraints: true, onDelete: 'CASCADE' });
 User.hasMany(Product);
 User.hasOne(Cart);
@@ -228,8 +291,8 @@ Cart.belongsToMany(Product, { through: CartItem });
 Product.belongsToMany(Cart, { through: CartItem });
 
 sequelize
-  .sync({ force: true })
-  // .sync()
+  // .sync({ force: true })
+  .sync()
   .then(result => {
     return User.findByPk(1);
   })
