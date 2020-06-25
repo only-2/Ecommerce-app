@@ -27,9 +27,7 @@ class Header extends Component {
                     <NavLink exact to="/"><img className="nav-img" src="/logo.png" alt="logo" /></NavLink>
                     <nav>
                         <ul className="nav__links">
-                            <li><button onClick={this.props.logout} className="auth-btn-nav">
-                                Logout
-                            </button></li>
+                           
                             <li><NavLink exact to="/category">
                                 <span role="img" aria-label="">🛍️ </span> Category
                             </NavLink></li>
@@ -42,6 +40,9 @@ class Header extends Component {
                             <li><NavLink exact to="/profile">
                                 <span role="img" aria-label="">👨‍💻 </span>Profile
                             </NavLink></li>
+                            <li><button onClick={this.props.logout} className="auth-btn-nav">
+                                Logout
+                            </button></li>
                         </ul>
                     </nav>
                     <p onClick={this.openNav} className="menu cta">Menu</p>

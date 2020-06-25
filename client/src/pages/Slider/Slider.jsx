@@ -8,18 +8,18 @@ class Slider extends Component {
         this.state = {
           activeIndex: 0,
           length: landingData.length,
-          interval:0
+          interval:null
         };
       }
       componentDidMount(){
-        this.interval = setInterval(this.autoplay(),4000);
+        this.autoplay();
       }
       componentWillUnmount(){
         clearInterval(this.interval);
       }
     
       autoplay = ()=>{
-        this.goToNextSlide();
+        setTimeout(this.goToNextSlide(),4000);
       }
       goToPrevSlide = ()=> {
         let index = this.state.activeIndex;
@@ -40,9 +40,9 @@ class Slider extends Component {
     
       goToNextSlide = ()=> {
         let index = this.state.activeIndex;
-        console.log(index);
+        // console.log(index);
         let length = this.state.length;
-        console.log(length);
+        // console.log(length);
     
         if (index === length - 1) {
           index = 0
@@ -59,8 +59,8 @@ class Slider extends Component {
       }
     
       render() {
-        console.log(this.state.activeIndex);
-        console.log(this.state.length);
+        // console.log(this.state.activeIndex);
+        // console.log(this.state.length);
         
         
         return (
