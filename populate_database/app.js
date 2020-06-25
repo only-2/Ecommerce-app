@@ -6,12 +6,6 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-// const faker = require('faker');
-// for(let i=0; i<10; ++i) {
-//   console.log(faker.name.findName());
-//   console.log(faker.image.imageUrl());
-//   console.log(faker.image.fashion());
-// }
 
 // Electronics Data 
 const electronics = [
@@ -59,7 +53,6 @@ const electronics = [
   }
 ]
 for(let i=0; i<electronics.length; ++i) {
-  console.log(electronics[i].Price)
   axios({
     method: 'post',
     url: 'http://localhost:4000/addProduct',
@@ -286,4 +279,4 @@ for(let i=0; i<kids.length; ++i) {
 
 
 
-app.listen(5000);
+// app.listen(5000);

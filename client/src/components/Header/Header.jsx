@@ -38,7 +38,7 @@ class Header extends Component {
                                 <span role="img" aria-label="">🛒 </span>Cart
                             </NavLink></li>
                             <li><NavLink exact to="/profile">
-                                <span role="img" aria-label="">👨‍💻 </span>{"Welocme, "+this.props.userinfo.name}
+                                <span role="img" aria-label="">👨‍💻 </span>{this.props.userinfo.name}
                             </NavLink></li>
                             <li><button onClick={this.props.logout} className="auth-btn-nav">
                                 Logout

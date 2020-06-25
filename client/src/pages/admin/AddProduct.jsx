@@ -86,7 +86,7 @@ class Addpr extends Component {
     render() {
         const { formErrors } = this.state;
         return (
-            <div className="wrapper" >
+            <div className="adwrapper" >
                 <div className="form-wrapper">
                     <h1>Add Product</h1>
                     <form onSubmit={this.handleSubmit} noValidate>
@@ -113,12 +113,12 @@ class Addpr extends Component {
                                 name="prcategory"
                                 onChange={this.handleChange}
                             >
-                                <option value="selectcard">Product Category</option>
+                                <option value="random">Product Category</option>
                                 <option value="electronics">Electronics</option>
-                                <option value="menswear">Men's Wear</option>
-                                <option value="womenswear">Women's Wear</option>
+                                <option value="Apparels">Men's Wear</option>
+                                <option value="kids">Kids's Wear</option>
+                                <option value="homeandfurniture">Home and Furniture</option>
                                 <option value="books">Books</option>
-                                <option value="shoes">Shoes</option>
                             </select>
                             {formErrors.prcategory.length > 0 && (
                                 <span className="errorMessage">{formErrors.prcategory}</span>

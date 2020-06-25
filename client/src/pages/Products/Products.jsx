@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Header from '../../components/Header/Header';
 import { NavLink, withRouter } from 'react-router-dom';
+import Slide from './Slide';
 import axios from 'axios';
+import landingData from './landingData';
 import './Products.css';
 
 import { toast } from "react-toastify";
@@ -12,7 +14,10 @@ class Products extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            product: null
+            product: null,
+            activeIndex: 0,
+            length: landingData[this.props.slider].length,
+            interval: 0
         }
     }
 
@@ -47,6 +52,53 @@ class Products extends Component {
             toast("Something went wrong. Try again Later", { type: "error" });
         }
         this.props.history.push('/')
+    }
+
+    // Slider Functions
+    componentDidMount() {
+        this.interval = setInterval(this.autoplay(), 4000);
+    }
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+    autoplay = () => {
+        this.goToNextSlide();
+    }
+    goToPrevSlide = () => {
+        let index = this.state.activeIndex;
+        let length = this.state.length;
+        if (index < 1) {
+            index = length - 1;
+        }
+        else {
+            index--;
+        }
+        this.setState({
+            ...this.state,
+            activeIndex: index
+        });
+        clearInterval(this.interval);
+        this.interval = setInterval(this.autoplay, 4000);
+    }
+    goToNextSlide = () => {
+        let index = this.state.activeIndex;
+        let length = this.state.length;
+        // console.log(index);
+        // console.log(length);
+        if (index === length - 1) {
+            index = 0
+        } else {
+            index++;
+        }
+        this.setState({
+            ...this.state,
+            activeIndex: index
+        });
+        clearInterval(this.interval);
+        this.interval = setInterval(this.autoplay, 4000);
+    }
+    setLength = len => {
+        this.setState({ length: len });
     }
 
     render() {
@@ -90,6 +142,24 @@ class Products extends Component {
         return (
             <div>
                 <Header logout={this.props.logout} userinfo={this.props.userinfo} />
+
+                <div className="home">
+
+                    <Slide 
+                        activeIndex={this.state.activeIndex} 
+                        slider={this.props.slider} 
+                        setLength={this.setLength}
+                    />
+
+                    <div className="controls">
+                        <div className="prev" onClick={this.goToPrevSlide}>
+                            <i className="fas fa-angle-left"></i>
+                        </div>
+                        <div className="next" onClick={this.goToNextSlide}>
+                            <i className="fas fa-angle-right"></i>
+                        </div>
+                    </div>
+                </div>
 
                 <h1 className="center">Our items</h1>
                 <ul className="cards">

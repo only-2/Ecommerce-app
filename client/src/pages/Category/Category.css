@@ -11,7 +11,7 @@
   background-size: contain;
 }
 .item4 {
-  background: url("https://s3.ap-south-1.amazonaws.com/affiliatecubber/images/offer_banners/flipkart-latest-womens-wear-1565328774.png");
+  background: url("https://img.sitaphal.com/media/uploads/sitaphal-8125-1-1-1488605615.jpg");
   background-size: contain;
 }
 .item5 {
@@ -19,7 +19,7 @@
   background-size: contain;
 }
 .item6 {
-  background: url("https://paisebachaoindia.com/wp-content/uploads/2016/02/85.png");
+  background: url("https://images.financialexpress.com/2016/08/samsung-festival-L.jpg");
   background-size: contain;
 }
 
@@ -54,10 +54,10 @@
   }
 }
 .category div:hover {
-  cursor: pointer;
   transform: scale(1.05);
 }
 .category div .btn {
+  cursor: pointer;
   border: 2px solid blue;
   height: 38px;
   width: 124px;

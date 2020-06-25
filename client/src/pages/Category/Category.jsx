@@ -12,25 +12,35 @@ class Category extends Component {
         const res = await axios.get('http://localhost:4000/getElectronics');
         console.log(res.data)
         this.props.updateProd(res.data);
+        this.props.updateSliderPos('electronics');
         this.props.history.push('/products')
-        
     }
     getBooks = async () => {
         const res = await axios.get('http://localhost:4000/getBooks');
         console.log(res.data)
         this.props.updateProd(res.data);
+        this.props.updateSliderPos('books');
         this.props.history.push('/products')
     }
-    getMensfashion = async () => {
-        const res = await axios.get('http://localhost:4000/getMensfashion');
+    getKids = async () => {
+        const res = await axios.get('http://localhost:4000/getKids');
         console.log(res.data)
         this.props.updateProd(res.data);
+        this.props.updateSliderPos('kids');
         this.props.history.push('/products')
     }
-    getWomensfashion = async () => {
-        const res = await axios.get('http://localhost:4000/getWomensfashion');
+    getApparels = async () => {
+        const res = await axios.get('http://localhost:4000/getApparels');
         console.log(res.data)
         this.props.updateProd(res.data);
+        this.props.updateSliderPos('apparels');
+        this.props.history.push('/products')
+    }
+    getHomeandfurniture = async () => {
+        const res = await axios.get('http://localhost:4000/getHomeandfurniture');
+        console.log(res.data)
+        this.props.updateProd(res.data);
+        this.props.updateSliderPos('homeandfurniture');
         this.props.history.push('/products')
     }
 
@@ -48,17 +58,17 @@ class Category extends Component {
                         <button className="btn" onClick={this.getBooks}>Shop Now</button>
                     </div>
                     <div className="item3">
-                        <button className="btn" onClick={this.getMensfashion}>Shop Now</button>
+                        <button className="btn" onClick={this.getApparels}>Shop Now</button>
                     </div>
                     <div className="item4">
-                        <button className="btn" onClick={this.getWomensfashion}>Shop Now</button>
+                        <button className="btn" onClick={this.getKids}>Shop Now</button>
                     </div>
                     <div className="item5">
-                        <button className="btn" onClick={this.getElectronics}>Shop Now</button>
+                        <button className="btn" onClick={this.getHomeandfurniture}>Shop Now</button>
                     </div>
-                    <div className="item6">
+                    {<div className="item6">
                         <button className="btn" onClick={this.getElectronics}>Shop Now</button>
-                    </div>
+                    </div>}
                 </section>
             </div>
         );

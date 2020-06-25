@@ -1,11 +1,11 @@
-/* .ad-wrapper {
-  background-color: #faeee7;
+.ad-wrapper {
+  background-color: #f0efef;
   height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
 }
-.wrapper {
+.adwrapper {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -26,7 +26,7 @@ form {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-} */
+}
 
 h1 {
   text-align: center;

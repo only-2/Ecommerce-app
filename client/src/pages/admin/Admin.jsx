@@ -12,7 +12,7 @@ class Admin extends Component {
       <React.Fragment>
         <div className="ad-wrapper">
           <Header logout={this.props.logout} userinfo={this.props.userinfo} />
-          <section className="head" style={{ fontSize: "3rem", padding: "3rem" }}>
+          <section className="head" style={{ fontSize: "2rem", padding: "1rem" }}>
             Welcome Admin
           </section>
           <AddProduct />

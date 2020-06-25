@@ -103,6 +103,7 @@ app.use('/getProfile', (req, res) => {
   res.send(userLoggedIn);
 });
 
+
 app.use('/getElectronics', (req, res) => {
   Product.findAll({ where: { category: 'electronics' } })
     .then(product => {
@@ -117,20 +118,28 @@ app.use('/getBooks', (req, res) => {
     })
     .catch(err => console.log(err));
 });
-app.use('/getMensfashion', (req, res) => {
-  Product.findAll({ where: { category: 'menswear' } })
+app.use('/getKids', (req, res) => {
+  Product.findAll({ where: { category: 'kids' } })
     .then(product => {
       res.send(product);
     })
     .catch(err => console.log(err));
 });
-app.use('/getWomensfashion', (req, res) => {
-  Product.findAll({ where: { category: 'womenswear' } })
+app.use('/getApparels', (req, res) => {
+  Product.findAll({ where: { category: 'Apparels' } })
     .then(product => {
       res.send(product);
     })
     .catch(err => console.log(err));
 });
+app.use('/getHomeandfurniture', (req, res) => {
+  Product.findAll({ where: { category: 'homeandfurniture' } })
+    .then(product => {
+      res.send(product);
+    })
+    .catch(err => console.log(err));
+});
+
 
 app.use('/getCartProducts', (req, res) => {
   userLoggedIn
@@ -300,7 +309,7 @@ sequelize
     if (!user) {
       // Admin user with password 12345 added
       return User.create({
-        firstName: 'admin',
+        firstName: 'Admin',
         email: 'test@test.com',
         isAdmin: true,
         password: '$2a$12$8p/Q0bCjSCadQ/wPzUJ.VeiBRfQYcRYz1D4BMH42Ys.Tz7QJcrp8S'
