@@ -4,24 +4,49 @@ import { NavLink, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import './Products.css';
 
-class Products extends Component {
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
 
-    addToCart = async () => {
-        const res = await axios.get('http://localhost:4000/addtoCart');
-        console.log(res.data)
-        this.setState({ products: res.data });
+class Products extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            product: null
+        }
+    }
+
+    handleRead = async (event, prod) => {
+        event.preventDefault();
+        this.props.updateSingleProduct(prod)
+        this.props.history.push('/product-view')
     }
 
     handleClick = async (event, prodId) => {
-        event.preventDefault()
-        const userId = this.props.userId;
-        console.log(this.props.userId, prodId);
+        event.preventDefault();
+        const userId = this.props.userinfo.userId;
+        // console.log(this.props.userinfo.userId, prodId);
         await axios.post('http://localhost:4000/addtoCart', {
             "userId": userId,
             "prodId": prodId
         })
         this.props.history.push('/viewcart')
+    }
 
+    handleDelete = async (event, prodId) => {
+        event.preventDefault();
+        const userId = this.props.userinfo.userId;
+        // console.log(this.props.userinfo.userId, prodId);
+        const res = await axios.post('http://localhost:4000/deleteProd', {
+            "userId": userId,
+            "prodId": prodId
+        })
+        if (res.data.status === "success") {
+            toast("Success! Product deleted", { type: "success" });
+        } else {
+            toast("Something went wrong. Try again Later", { type: "error" });
+        }
+        this.props.history.push('/')
     }
 
     render() {
@@ -35,13 +60,18 @@ class Products extends Component {
                             <h2 className="card_title">{item.title}</h2>
                             <p className="card_text">{item.desc}</p>
                             <p className="price">Price: {item.price}$</p>
-                            <button className="prbtn card_btn">Read More</button>
+                            <button
+                                className="prbtn card_btn"
+                                onClick={(e) => this.handleRead(e, item)}
+                            >Read More
+                            </button>
                             {
-                                this.props.userinfo.isAdmin &&
+                                this.props.userinfo.isAdmin
+                                &&
                                 <NavLink exact to="/cart" className="td-none">
                                     <button
                                         className="prbtn card_btn"
-                                        onClick={(e) => this.handleClick(e, item.id)}
+                                        onClick={(e) => this.handleDelete(e, item.id)}
                                     >Delete Product</button>
                                 </NavLink>
                             }

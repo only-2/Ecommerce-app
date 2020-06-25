@@ -34,6 +34,15 @@ class Home extends Component {
         this.getProfile();
     }
 
+    handleDelete = async (event) => {
+        event.preventDefault();
+        await axios.post('http://localhost:4000/deleteUser', {
+            "userId": this.props.userinfo.userId
+        });
+        this.props.logout();
+        console.log("User deleted", this.props.userinfo.userId);
+    }
+
     render() {
         return (
             <div className="Home">
@@ -48,7 +57,7 @@ class Home extends Component {
                         <input type="text" placeholder={"Adddress: " + this.state.address} />
                     <input type="submit" value="Update" />
                     <br />
-                    <input type="submit" value="Delete" />
+                    <input type="submit" value="Delete" onClick={this.handleDelete} />
                 </div>
             </div>
             </div >
