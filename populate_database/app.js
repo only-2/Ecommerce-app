@@ -6,15 +6,15 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-const faker = require('faker');
-for(let i=0; i<10; ++i) {
-  console.log(faker.name.findName());
-  console.log(faker.image.imageUrl());
-  console.log(faker.image.fashion());
-}
-//electronics
+// const faker = require('faker');
+// for(let i=0; i<10; ++i) {
+//   console.log(faker.name.findName());
+//   console.log(faker.image.imageUrl());
+//   console.log(faker.image.fashion());
+// }
 
-const product = [
+// Electronics Data 
+const electronics = [
   {
     title: "Skullcandy Uproar Bluetooth Headset with Mic ",
     imageUrl: "https://24eshop.in/wp-content/uploads/2018/08/Skullcandy_Headphone_UPROARBT_S5URHW-462_11_1100_Angle_Gray.jpg",
@@ -58,9 +58,18 @@ const product = [
     category: 'electronics'
   }
 ]
+for(let i=0; i<electronics.length; ++i) {
+  console.log(electronics[i].Price)
+  axios({
+    method: 'post',
+    url: 'http://localhost:4000/addProduct',
+    data: electronics[i],
+    'Content-Type': 'application/json'
+  })
+}
 
-//homeandfurniture
-const product = [
+// Homeandfurniture Data
+const homeandfurniture = [
   {
     title: "Artesia SCFP-856 MDF (Medium Density Fiber) Wall Shelf  (Number of Shelves - 6, Yellow)",
     imageUrl: "https://rukminim1.flixcart.com/image/416/416/k3yrte80/rack-shelf/g/n/t/dattachbkyellow1-xylm-original-imaffsahp2eh8dzd.jpeg?q=70",
@@ -103,9 +112,18 @@ const product = [
     Desc: "Enrich your bedroom with art, culture and tradition with our wide range of ethnically designed bed sheets. Inspired by rich and diversified Indian culture, these bed sheets feature a distinctive style that gives a traditional feel to your home.Metro Living offers products with 100% cotton fabric. ",
     category: 'homeandfurniture'
   }
-
 ]
-const product = [
+for(let i=0; i<homeandfurniture.length; ++i) {
+  axios({
+    method: 'post',
+    url: 'http://localhost:4000/addProduct',
+    data: homeandfurniture[i],
+    'Content-Type': 'application/json'
+  })
+}
+
+// Apparels Data
+const Apparels = [
   {
     title: "United Colors of Benetton Men Solid Casual Button Down Shirt",
     imageUrl: "https://rukminim1.flixcart.com/image/880/1056/k0flmkw0/shirt/y/c/k/m-18a5db19u008i-united-colors-of-benetton-original-imafk7jy5pcfdbm8.jpeg?q=50",
@@ -149,8 +167,17 @@ const product = [
     category: 'Apparels'
   }
 ]
-//books
-const product = [
+for(let i=0; i<Apparels.length; ++i) {
+  axios({
+    method: 'post',
+    url: 'http://localhost:4000/addProduct',
+    data: Apparels[i],
+    'Content-Type': 'application/json'
+  })
+}
+
+// Books Data
+const books = [
   {
     title: "The Passengers  (English, Paperback, Marrs John)",
     imageUrl: "https://rukminim1.flixcart.com/image/416/416/k0r15e80/book/5/2/6/the-passengers-original-imafk6feshbxwxg5.jpeg?q=70",
@@ -193,10 +220,18 @@ const product = [
     Desc: "Discovering the Vedas - Origins, Mantras, Rituals, Insights, written by Frits Staal, is an insightful book that tries to understand one of the oldest spiritual and philosophical traditions of India.",
     category: 'books'
   }
-
 ]
-//kids
-const product = [
+for(let i=0; i<books.length; ++i) {
+  axios({
+    method: 'post',
+    url: 'http://localhost:4000/addProduct',
+    data: books[i],
+    'Content-Type': 'application/json'
+  })
+}
+
+// Kids Data
+const kids = [
   {
     title: "Zurie Toy Collection Off Road Monster Racing Car, Remote Control , 1:20 Scale, Black  (Black)",
     imageUrl: "https://rukminim1.flixcart.com/image/416/416/jkybwcw0/remote-control-toy/z/h/b/big-and-mean-rock-crawling-1-20-scale-modified-off-road-hummer-original-imaeujsgdp2cf5rb.jpeg?q=70",
@@ -239,15 +274,16 @@ const product = [
     Desc: "Colorful wooden numbers with mathematical signs. Wooden number puzzle for kids is a new classic way for educating kids.",
     category: 'kids'
   }
-
 ]
+for(let i=0; i<kids.length; ++i) {
+  axios({
+    method: 'post',
+    url: 'http://localhost:4000/addProduct',
+    data: kids[i],
+    'Content-Type': 'application/json'
+  })
+}
 
-axios({
-  method: 'post',
-  url: 'http://localhost:4000/addProduct',
-  data: product,
-  'Content-Type': 'application/json'
-})
 
 
 app.listen(5000);

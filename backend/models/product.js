@@ -14,7 +14,7 @@ const Product = sequelize.define('product', {
         allowNull: false
     },
     imageUrl: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(500),
         allowNull: false
     },
     category: {
@@ -22,7 +22,7 @@ const Product = sequelize.define('product', {
         allowNull: false
     },
     description: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(500),
         allowNull: false
     }
 });
