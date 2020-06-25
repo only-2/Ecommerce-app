@@ -86,7 +86,7 @@ class Register extends Component {
           value.length <= 0 ? "Field Required" : "";
         break;
       case "contact":
-        formErrors.email = mobRegex.test(value)
+        formErrors.contact = mobRegex.test(value)
           ? ""
           : "Enter A Valid Phone Number";
         break;
