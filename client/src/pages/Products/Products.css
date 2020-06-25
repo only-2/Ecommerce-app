@@ -137,3 +137,11 @@
   margin-bottom: 1.25rem;
   font-weight: 400;
 }
+
+.fix-caption {
+  position: relative;
+}
+.slide-h2 {
+  color: #ffffff;
+  bottom: 10px;
+}

@@ -1,7 +1,7 @@
 ### dbms-project-2.0
 
 ```
-Open 2 terminals
+Open 3 terminals
 
 First terminal:
     cd backend
@@ -10,6 +10,11 @@ First terminal:
 
 Second terminal:
     cd client
+    npm i
+    npm start
+
+Third terminal:
+    cd fill_dbms
     npm i
     npm start
 ```
@@ -22,6 +27,9 @@ Second terminal:
 │    ├── .gitignore
 │    ├── README.md
 ├── backend
+│    ├── index.js
+│    ├── package.json
+├── fill_dbms
 │    ├── index.js
 │    ├── package.json
 └── README.md

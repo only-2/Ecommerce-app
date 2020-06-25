@@ -8,12 +8,9 @@ class Slide extends Component {
     };
 
     componentWillMount() {
-        const val = landingData[this.props.slider];
-        // this.props.setLength(val.length)
         this.setState({
-            landing: val
+            landing: landingData[this.props.slider]
         })
-        // console.log(landingData[key].length)
     }
 
     render() {
@@ -24,10 +21,8 @@ class Slide extends Component {
                         backgroundImage: `url(${s.img})`,
                     }}>
                         <div className="container">
-                            <div className="caption">
-                                <h2>{s.heading}</h2>
-                                <p>{s.desc}</p>
-                                <NavLink exact to='/viewCart'>Shop Now</NavLink>
+                            <div className="caption fix-caption">
+                            <h2 className="slide-h2">{s.heading}</h2>
                             </div>
                         </div>
                     </div>
