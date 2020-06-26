@@ -19,7 +19,8 @@ class Cart extends Component {
     }
 
     getCartItems = async () => {
-        const res = await axios.get('http://localhost:4000/getCartProducts');
+        const res = await axios.get(`http://localhost:4000/getCartProducts/?id=${this.props.userinfo.userId}`);
+        console.log(`http://localhost:4000/getCartProducts/?${this.props.userinfo.userId}`);
         console.log(res.data)
         this.setState({ cartItems: res.data });
         console.log(this.state)
@@ -32,7 +33,8 @@ class Cart extends Component {
     remove = async (event, prodId) => {
         event.preventDefault();
         await axios.post('http://localhost:4000/deleteFromCart', {
-            "prodId": prodId
+            "prodId": prodId,
+            "userId": this.props.userinfo.userId
         });
         console.log("Removed item", prodId);
         this.getCartItems();

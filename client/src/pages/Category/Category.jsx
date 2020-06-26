@@ -43,6 +43,13 @@ class Category extends Component {
         this.props.updateSliderPos('homeandfurniture');
         this.props.history.push('/products')
     }
+    getFootwear = async () => {
+        const res = await axios.get('http://localhost:4000/getFootwear');
+        console.log(res.data)
+        this.props.updateProd(res.data);
+        this.props.updateSliderPos('footwear');
+        this.props.history.push('/products')
+    }
 
 
     render() {
@@ -67,7 +74,7 @@ class Category extends Component {
                         <button className="btn" onClick={this.getHomeandfurniture}>Shop Now</button>
                     </div>
                     {<div className="item6">
-                        <button className="btn" onClick={this.getElectronics}>Shop Now</button>
+                        <button className="btn" onClick={this.getFootwear}>Shop Now</button>
                     </div>}
                 </section>
             </div>

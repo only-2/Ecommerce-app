@@ -41,6 +41,12 @@ let arr = {
             img: img2,
             heading: "The Best Sound Quality Headphones"
         }
+    ],
+    "footwear": [
+        {
+            img: img2,
+            heading: "The Best Sound Quality Headphones"
+        }
     ]
 };
 export default arr;
