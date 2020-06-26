@@ -6,6 +6,24 @@ label {
   color: #aaa;
   font-size: 1.3rem;
 }
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.pbtn {
+  padding: 5px;
+  background-color: #9bdeac;
+  border: 2px solid #494;
+  border-radius: 30%;
+}
 
 .product-image {
   float: left;
@@ -104,7 +122,9 @@ label {
   line-height: 1.4em;
 }
 .product .product-quantity input {
-  width: 52px;
+  width: 30px;
+  height: 30px;
+  margin: 0px 10px;
 }
 .product .remove-product {
   border: 0;

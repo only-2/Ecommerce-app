@@ -13,6 +13,8 @@ const User = require('./models/user');
 const Product = require('./models/product');
 const Cart = require('./models/cart');
 const CartItem = require('./models/cart-item');
+const Order = require('./models/order');
+const OrderItem = require('./models/order-item');
 
 // Middlewares
 const app = express();
@@ -133,6 +135,41 @@ app.use('/getFootwear', (req, res) => {
   Product.findAll({ where: { category: 'footwear' } })
     .then(product => {
       res.send(product);
+    })
+    .catch(err => console.log(err));
+});
+
+app.use('/place-order', (req, res) => {
+  const { userId } = req.body;
+  let fetchedCart;
+  let currentUser;
+  User.findByPk(userId)
+    .then(user => {
+      currentUser = user;
+      return user.getCart()
+    })
+    .then(cart => {
+      fetchedCart = cart;
+      return cart.getProducts();
+    })
+    .then(products => {
+      return currentUser
+        .createOrder()
+        .then(order => {
+          return order.addProducts(
+            products.map(product => {
+              product.orderItem = { quantity: product.cartItem.quantity };
+              return product;
+            })
+          );
+        })
+        .catch(err => console.log(err));
+    })
+    .then(result => {
+      return fetchedCart.setProducts(null);
+    })
+    .then(result => {
+      res.redirect('/orders');
     })
     .catch(err => console.log(err));
 });
@@ -308,6 +345,9 @@ User.hasOne(Cart);
 Cart.belongsTo(User, { constraints: true, onDelete: 'CASCADE' });
 Cart.belongsToMany(Product, { through: CartItem });
 Product.belongsToMany(Cart, { through: CartItem });
+Order.belongsTo(User);
+User.hasMany(Order);
+Order.belongsToMany(Product, { through: OrderItem });
 
 sequelize
   // .sync({ force: true })
@@ -320,7 +360,7 @@ sequelize
       // Admin user with password 12345 added
       return User.create({
         firstName: 'Admin',
-        email: 'admin@admin.com',
+        email: 'test@test.com',
         isAdmin: true,
         password: '$2a$12$8p/Q0bCjSCadQ/wPzUJ.VeiBRfQYcRYz1D4BMH42Ys.Tz7QJcrp8S'
       })

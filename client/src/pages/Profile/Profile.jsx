@@ -50,16 +50,16 @@ class Home extends Component {
                 <div id="sc-edprofile">
                     <h1>{this.state.firstName} Profile</h1>
                     <div className="sc-container">
-                        <input type="text" placeholder= {"First Name: " + this.state.firstName} />
+                        <input type="text" placeholder={"First Name: " + this.state.firstName} />
                         <input type="text" placeholder={"Last Name: " + this.state.lastName} />
-                        <input type="text" placeholder={"Email: " + this.state.email}/>
+                        <input type="text" placeholder={"Email: " + this.state.email} />
                         <input type="text" placeholder={"Contact: " + this.state.contact} />
                         <input type="text" placeholder={"Adddress: " + this.state.address} />
-                    <input type="submit" value="Update" />
-                    <br />
-                    <input type="submit" value="Delete" onClick={this.handleDelete} />
+                        <input type="submit" value="Update" />
+                        <br />
+                        <input type="submit" value="Delete" onClick={this.handleDelete} />
+                    </div>
                 </div>
-            </div>
             </div >
         );
     }

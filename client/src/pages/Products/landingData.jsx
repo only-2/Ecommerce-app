@@ -32,12 +32,12 @@ let arr = {
     ],
     "books": [
         {
-            img: img13,
-            heading: "New Mystery And Crime Collection"
-        },
-        {
             img: img14,
             heading: "Anime New Arrivals"
+        },
+        {
+            img: img13,
+            heading: "New Mystery And Crime Collection"
         },
         {
             img: img15,

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import StripeCheckout from "react-stripe-checkout";
+import { withRouter } from 'react-router-dom';
 
 import Header from '../../components/Header/Header';
 import './Cart.css';
@@ -42,7 +43,7 @@ class Cart extends Component {
 
     async handleToken(token, price) {
         // const price = this.state.price;
-        console.log(token,price)
+        console.log(token, price)
         const res = await axios.post(
             "http://localhost:4000/checkout",
             { token, price }
@@ -50,9 +51,25 @@ class Cart extends Component {
         console.log(res.data.status);
         if (res.data.status === "success") {
             toast("Success! Check email for details", { type: "success" });
+            this.props.history.push('/');
+            await axios.post('http://localhost:4000/place-order', {
+                "userId": this.props.userinfo.userId
+            });
+            console.log("Idhar aa gaya")
         } else {
-            toast("Something went wrong", { type: "error" });
+            toast("Something went wrong, Try again Later", { type: "error" });
         }
+    }
+
+    IncrementItem = async (event, prodId) => {
+        event.preventDefault();
+        const userId = this.props.userinfo.userId;
+        // console.log(this.props.userinfo.userId, prodId);
+        await axios.post('http://localhost:4000/addtoCart', {
+            "userId": userId,
+            "prodId": prodId
+        })
+        this.getCartItems();
     }
 
     render() {
@@ -70,7 +87,8 @@ class Cart extends Component {
                     </div>
                     <div className="product-price">{item.price}</div>
                     <div className="product-quantity">
-                        <input type="number" value={item.cartItem.quantity} min="1" />
+                        <input className="inputne" type="number" value={item.cartItem.quantity} onChange={this.handleChange} />
+                        <button className="pbtn" onClick={(e) => this.IncrementItem(e, item.cartItem.productId)}> + </button>
                     </div>
                     <div className="product-removal">
                         <button className="remove-product" onClick={(e) => this.remove(e, item.cartItem.productId)}>
@@ -133,4 +151,4 @@ class Cart extends Component {
     }
 }
 
-export default Cart;
+export default withRouter(Cart);
