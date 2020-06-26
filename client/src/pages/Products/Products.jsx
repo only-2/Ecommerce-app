@@ -127,12 +127,17 @@ class Products extends Component {
                                     >Delete Product</button>
                                 </NavLink>
                             }
-                            <NavLink exact to="/cart" className="td-none">
-                                <button
-                                    className="prbtn card_btn"
-                                    onClick={(e) => this.handleClick(e, item.id)}
-                                >Add to Cart</button>
-                            </NavLink>
+
+                            {
+                                !this.props.userinfo.isAdmin
+                                &&
+                                <NavLink exact to="/cart" className="td-none">
+                                    <button
+                                        className="prbtn card_btn"
+                                        onClick={(e) => this.handleClick(e, item.id)}
+                                    >Add to Cart</button>
+                                </NavLink>
+                            }
                         </div>
                     </div>
                 </li>
@@ -145,9 +150,9 @@ class Products extends Component {
 
                 <div className="prod_home">
 
-                    <Slide 
-                        activeIndex={this.state.activeIndex} 
-                        slider={this.props.slider} 
+                    <Slide
+                        activeIndex={this.state.activeIndex}
+                        slider={this.props.slider}
                         setLength={this.setLength}
                     />
 
