@@ -19,7 +19,7 @@ let arr = {
     "electronics": [
         {
             img: img1,
-            heading: "The Best Sound Quality Headphones"
+            heading: "Introducing SONY MDR-1ADAC,A Revolution In Sound Quality"
         },
         {
             img: img2,
@@ -27,7 +27,7 @@ let arr = {
         },
         {
             img: img3,
-            heading: "Surprise From OnePlus"
+            heading: "The OnePlus 7 Pro is here #NEVER SETTLE"
         },
     ],
     "books": [
