@@ -80,6 +80,7 @@ body {
   background-color: #000000;
   text-decoration: none;
   color: #ffffff;
+  cursor: unset;
 }
 
 .home .slide.active .caption a {

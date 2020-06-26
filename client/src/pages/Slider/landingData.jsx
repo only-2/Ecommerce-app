@@ -27,8 +27,8 @@ let arr = [
     },
     {
         img:img6,
-        // heading:"New Toys Collection",
-        // desc:"Starting from 199"
+        heading:"#Never Settle",
+        desc:"Coming Soon"
     },
     {
         img:img5,
