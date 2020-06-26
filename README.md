@@ -1,4 +1,17 @@
-### dbms-project-2.0
+### Ecommerce app
+
+Database Management System (CS204) project made by @amanraj1608 and @naveen19991124
+
+#### Technologies Used
+
+```
+ReactJS
+NodeJS
+Sequelize
+with rest API
+```
+
+#### How to run locally
 
 ```
 Open 3 terminals
@@ -14,10 +27,23 @@ Second terminal:
     npm start
 
 Third terminal:
-    cd fill_dbms
+    cd populate_database
     npm i
     npm start
 ```
+
+#### Project deployment
+
+Due to lack of good free onlinesql databse online deployed link may work slow. Run on local machine to avoid latency.
+Live at https://my-flipkart.surge.sh/
+
+```
+Frontend at - surge.sh/
+Backend at - heroku.com/
+MySQL Database at - freemysqlhosting.net/
+```
+
+#### Folder Structure
 
 ```
 ├── client
@@ -29,7 +55,7 @@ Third terminal:
 ├── backend
 │    ├── index.js
 │    ├── package.json
-├── fill_dbms
+├── populate_database
 │    ├── index.js
 │    ├── package.json
 └── README.md
