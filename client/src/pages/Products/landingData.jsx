@@ -1,7 +1,7 @@
 import img1 from '../../images/electronics1.jpg'
 import img2 from '../../images/electronics4.jpg'
 import img3 from '../../images/electronics5.jpeg'
-import img4 from '../../images/electronics3.jpg'
+// import img4 from '../../images/electronics3.jpg'
 
 let arr = {
     "electronics": [
@@ -17,10 +17,6 @@ let arr = {
             img: img3,
             heading: "Surprise From OnePlus"
         },
-        {
-            img: img4,
-            heading: "Surprise From OnePlus"
-        }
     ],
     "books": [
         {
