@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from 'react-router-dom';
 
 const Category = () => {
   return (
@@ -6,22 +7,22 @@ const Category = () => {
       <h1>EXPLORE INDIA'S LARGEST ONLINE STORE</h1>
       <section className="category" id="category">
         <div className="item1">
-          <button className="btn">Shop Now</button>
+          <NavLink exact to="/category"><button className="btn">Shop Now</button></NavLink>
         </div>
         <div className="item2">
-          <button className="btn">Shop Now</button>
+          <NavLink exact to="/category"><button className="btn">Shop Now</button></NavLink>
         </div>
         <div className="item3">
-          <button className="btn">Shop Now</button>
+          <NavLink exact to="/category"><button className="btn">Shop Now</button></NavLink>
         </div>
         <div className="item4">
-          <button className="btn">Shop Now</button>
+          <NavLink exact to="/category"><button className="btn">Shop Now</button></NavLink>
         </div>
         <div className="item5">
-          <button className="btn">Shop Now</button>
+          <NavLink exact to="/category"><button className="btn">Shop Now</button></NavLink>
         </div>
         <div className="item6">
-          <button className="btn">Shop Now</button>
+          <NavLink exact to="/category"><button className="btn">Shop Now</button></NavLink>
         </div>
       </section>
     </div>

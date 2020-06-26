@@ -26,7 +26,7 @@ nav {
   text-decoration: none;
 }
 
-.nav__links{
+.nav__links {
   list-style: none;
   display: flex;
   justify-content: center;
@@ -43,14 +43,14 @@ nav {
   border-radius: 60px;
   height: 32px;
   padding: 0px 20px;
-  border: 1px solid #dbdbdb;
+  border: 1px solid #555555;
 }
 
 .nav__links li {
   padding: 3px 18px;
 }
 
-.nav__links li:nth-child(5) {
+.nav__links li:last-child {
   padding: 0px 0px 0px 20px;
 }
 
