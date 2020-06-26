@@ -143,7 +143,7 @@ class Products extends Component {
             <div>
                 <Header logout={this.props.logout} userinfo={this.props.userinfo} />
 
-                <div className="home">
+                <div className="prod_home">
 
                     <Slide 
                         activeIndex={this.state.activeIndex} 
@@ -151,11 +151,11 @@ class Products extends Component {
                         setLength={this.setLength}
                     />
 
-                    <div className="controls">
-                        <div className="prev" onClick={this.goToPrevSlide}>
+                    <div className="prod_controls">
+                        <div className="prod_prev" onClick={this.goToPrevSlide}>
                             <i className="fas fa-angle-left"></i>
                         </div>
-                        <div className="next" onClick={this.goToNextSlide}>
+                        <div className="prod_next" onClick={this.goToNextSlide}>
                             <i className="fas fa-angle-right"></i>
                         </div>
                     </div>

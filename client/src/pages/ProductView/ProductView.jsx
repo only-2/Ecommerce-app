@@ -64,6 +64,7 @@ class ProductView extends Component {
                             </div>
                             <hr />
                             <div className="proddesc">
+                                <p><strong>Product Description:</strong></p><br></br><br></br>
                                 <p>{this.props.product.description}</p>
                             </div>
                             <hr />

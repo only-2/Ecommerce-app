@@ -26,19 +26,21 @@ nav {
   text-decoration: none;
 }
 
-.nav__links {
+.nav__links{
   list-style: none;
   display: flex;
   justify-content: center;
   font-size: 16px;
+  border-radius: 60px;
+  background-color: white;
 }
 .auth-btn-nav {
-  font-size: 17px;
+  font-size: 15px;
   color: #2874f0;
   font-weight: 500;
   background-color: #fff;
   cursor: pointer;
-  border-radius: 2px;
+  border-radius: 60px;
   height: 32px;
   padding: 0px 20px;
   border: 1px solid #dbdbdb;
@@ -54,6 +56,7 @@ nav {
 
 .nav__links li a {
   transition: all 0.3s ease 0s;
+  color: #2874f0;
 }
 
 .nav__links li a:hover {

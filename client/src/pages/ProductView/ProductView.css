@@ -5,10 +5,10 @@
   font-family: "Josefin Sans", sans-serif;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin-top: 100px;
+  margin-top: 30px;
 }
 .prodimg {
-  border: 2px solid red;
+  /* border: 2px solid red; */
   margin-left: 30px;
 }
 .prodimg img {
@@ -16,16 +16,16 @@
   width: 100%;
 }
 .cover {
-  object-fit: cover;
+  object-fit: contain;
 }
 .proddetails {
-  border: 2px solid yellow;
+  /* border: 2px solid yellow; */
   margin-right: 30px;
   margin-left: 20px;
 }
-.prodin {
+/* .prodin {
   border: 2px solid orange;
-}
+} */
 .prodtitle,
 .proddesc,
 .prodprice {
@@ -39,7 +39,7 @@
   font-size: 20px;
 }
 .prodprice {
-  font-size: 15px;
+  font-size: 16px;
 }
 .addbtn {
   color: #fb641b;

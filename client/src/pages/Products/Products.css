@@ -138,10 +138,123 @@
   font-weight: 400;
 }
 
-.fix-caption {
+/* .fix-caption {
   position: relative;
 }
 .slide-h2 {
   color: #ffffff;
   bottom: 10px;
+} */
+
+/* MyCSS */
+.prod_home {
+  height: 81vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.prod_home .prod_slide {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  display: none;
+  padding: 0 15px;
+}
+.prod_home .prod_slide.active {
+  display: flex;
+}
+/* @keyframes slide {
+  0% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+} */
+.prod_container {
+  max-width: 1170px;
+  display: flex;
+}
+
+.prod_home .prod_container {
+  flex-grow: 1;
+  display: flex;
+}
+.prod_home .prod_caption {
+  display: flex;
+  width: 50%;
+}
+.prod_home .prod_caption h2 {
+  align-self: flex-end;
+  font-size: 42px;
+  color: #000000;
+  padding-left: 0px;
+  margin: 15px 0 30px;
+  color: white
+}
+.prod_home .prod_slide.active .prod_caption h2 {
+  opacity: 0;
+  align-self: flex-end;
+  animation: captionText 0.5s ease forwards;
+  animation-delay: 0.4s;
+  color: white
+}
+.prod_home .prod_caption p {
+  align-self: flex-end;
+  font-size: 18px;
+  font-weight: 550;
+  margin: 15px 0 30px;
+  color: #222222;
+  color: white
+}
+.prod_home .prod_slide.active .prod_caption p {
+  align-self: flex-end;
+  opacity: 0;
+  animation: captionText 0.5s ease forwards;
+  animation-delay: 0.7s;
+  color: white
+}
+
+
+@keyframes captionText {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+.prod_home .prod_controls .prod_prev,
+.prod_home .prod_controls .prod_next {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  height: 40px;
+  width: 40px;
+  margin-top: -20px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  color: white;
+  transition: all 0.5s ease;
+}
+.prod_home .prod_controls .prod_prev:hover,
+.prod_home .prod_controls .prod_next:hover {
+  transform: scale(2);
+}
+.prod_home .prod_controls .prod_prev {
+  left: 0;
+}
+.prod_home .prod_controls .prod_next {
+  right: 0;
 }
