@@ -32,21 +32,35 @@ class ProductView extends Component {
                 <div className="prodcontainer">
                     <div className="prodimg">
                         {/* <ReactImageMagnify {...{
-                        smallImage: {
-                            alt: 'Wristwatch by Ted Baker London',
-                            isFluidWidth: true,
-                            src: dummy,
-                            // sizes: '(max-width: 300px) 100vw, (max-width: 400px) 30vw, 360px'
-                            height: 500,
-                            width: '100%'
+                            imageClassName: "cover",
+                            smallImage: {
+                                alt: 'Wristwatch by Ted Baker London',
+                                src: this.props.product.imageUrl,
+                                // sizes: '(max-width: 300px)',
+                                isFluidWidth: true,
+                                height: 500,
+                                width: '100%',
+                                // srcSet: this.srcSet,
+                                sizes: '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px',
+                                
 
-                        },
-                        largeImage: {
-                            src: dummy,
-                            width: 1200,
-                            height: 1500
-                        }
-                    }} /> */}
+
+                            },
+                            largeImage: {
+                                src: this.props.product.imageUrl,
+                                width: 1800,
+                                height: 1800,
+                            },
+                            // shouldUsePositiveSpaceLens: true,
+                            lensStyle: {
+                                background: 'hsla(0, 0%, 100%, .3)',
+                                width:20,
+                                height:20,
+                                border: '1px solid #ccc'
+                            },
+                            isHintEnabled: true,
+
+                        }} /> */}
                         <img className="cover" src={this.props.product.imageUrl} alt="hello" />
 
                         <button

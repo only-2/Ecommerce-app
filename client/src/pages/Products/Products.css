@@ -165,18 +165,19 @@
   z-index: 0;
   display: none;
   padding: 0 15px;
+  animation: slide 2s;
 }
 .prod_home .prod_slide.active {
   display: flex;
 }
-/* @keyframes slide {
+@keyframes slide {
   0% {
     transform: scale(1.1);
   }
   100% {
     transform: scale(1);
   }
-} */
+}
 .prod_container {
   max-width: 1170px;
   display: flex;
@@ -202,7 +203,7 @@
   opacity: 0;
   align-self: flex-end;
   animation: captionText 0.5s ease forwards;
-  animation-delay: 0.4s;
+  animation-delay: 0.5s;
   color: white
 }
 .prod_home .prod_caption p {
@@ -216,7 +217,7 @@
 .prod_home .prod_slide.active .prod_caption p {
   align-self: flex-end;
   opacity: 0;
-  animation: captionText 0.5s ease forwards;
+  animation: captionText 0.7s ease forwards;
   animation-delay: 0.7s;
   color: white
 }
