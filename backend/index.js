@@ -5,8 +5,6 @@ const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const stripe = require("stripe")("sk_test_51Gxt4GIY3uMkMao1hJpwAhdlXYfFiZZ7yz56i5NpxzpXEqqDYnegl8MVk0XzoYbmRbNNK4JjllqMiHVDtqg290uX00Xc1uwmAG");
 const uuid = require("uuid/v4");
-// const { randomBytes } = require('crypto');
-// const jwt = require('jsonwebtoken');
 
 
 // Internal imports
@@ -21,20 +19,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-// app.use((req, res, next) => {
-//   if (!req.user) {
-//     return next();
-//   }
-//   User.findByPk(req.user.dataValues.id)
-//     .then(user => {
-//       req.user = user;
-//       next();
-//     })
-//     .catch(err => console.log(err));
-// });
-
 app.post("/checkout", async (req, res) => {
-  // console.log("Request:", req.body);
   let error;
   let status;
   try {
@@ -76,9 +61,8 @@ app.post("/checkout", async (req, res) => {
   res.json({ error, status });
 });
 
-let userLoggedIn;
 
-// Will be moved in routes
+// Will be moved in routes later
 app.use('/addProduct', (req, res, next) => {
   let { title, imageUrl, Price, Desc, category } = req.body;
   // console.log(req.body)
@@ -100,7 +84,13 @@ app.use('/addProduct', (req, res, next) => {
 })
 
 app.use('/getProfile', (req, res) => {
-  res.send(userLoggedIn);
+  const id = req.query.id;
+  // console.log(id, typeof id);
+  User.findByPk(id)
+    .then(user => {
+      res.send(user);
+    })
+    .catch(err => console.log(err));
 });
 
 
@@ -139,11 +129,22 @@ app.use('/getHomeandfurniture', (req, res) => {
     })
     .catch(err => console.log(err));
 });
+app.use('/getFootwear', (req, res) => {
+  Product.findAll({ where: { category: 'footwear' } })
+    .then(product => {
+      res.send(product);
+    })
+    .catch(err => console.log(err));
+});
 
 
 app.use('/getCartProducts', (req, res) => {
-  userLoggedIn
-    .getCart()
+  const id = req.query.id;
+  // console.log(id, typeof id);
+  User.findByPk(id)
+    .then(user => {
+      return user.getCart()
+    })
     .then(cart => {
       return cart
         .getProducts()
@@ -169,9 +170,11 @@ app.use('/deleteProd', (req, res) => {
 
 
 app.use('/deleteFromCart', (req, res) => {
-  const { prodId } = req.body;
-  userLoggedIn
-    .getCart()
+  const { prodId, userId } = req.body;
+  User.findByPk(userId)
+    .then(user => {
+      return user.getCart()
+    })
     .then(cart => {
       return cart.getProducts({ where: { id: prodId } });
     })
@@ -186,11 +189,13 @@ app.use('/deleteFromCart', (req, res) => {
 });
 
 app.use('/addtoCart', (req, res) => {
-  const { prodId } = req.body;
+  const { prodId, userId } = req.body;
   let fetchedCart;
   let newQuantity = 1;
-  userLoggedIn
-    .getCart()
+  User.findByPk(userId)
+    .then(user => {
+      return user.getCart()
+    })
     .then(cart => {
       fetchedCart = cart;
       return cart.getProducts({ where: { id: prodId } });
@@ -253,6 +258,7 @@ app.use('/auth/login', (req, res, next) => {
   console.log("In login");
   const email = req.body.email;
   const password = req.body.password;
+  let userLoggedIn;
   User.findOne({ where: { email: email } })
     .then(user => {
       if (!user) {
@@ -287,9 +293,13 @@ app.use('/auth/login', (req, res, next) => {
 });
 
 app.use('/deleteUser', (req, res) => {
-  const { prodId } = req.body;
-  const result = userLoggedIn.destroy();
-  res.status(201).send(result);
+  const { userId } = req.body;
+  User.findByPk(userId)
+    .then(user => {
+      const result = user.destroy();
+      res.status(201).send(result);
+    })
+    .catch(err => console.log(err));
 });
 
 Product.belongsTo(User, { constraints: true, onDelete: 'CASCADE' });
@@ -300,8 +310,8 @@ Cart.belongsToMany(Product, { through: CartItem });
 Product.belongsToMany(Cart, { through: CartItem });
 
 sequelize
-  .sync({ force: true })
-  // .sync()
+  // .sync({ force: true })
+  .sync()
   .then(result => {
     return User.findByPk(1);
   })
@@ -310,7 +320,7 @@ sequelize
       // Admin user with password 12345 added
       return User.create({
         firstName: 'Admin',
-        email: 'test@test.com',
+        email: 'admin@admin.com',
         isAdmin: true,
         password: '$2a$12$8p/Q0bCjSCadQ/wPzUJ.VeiBRfQYcRYz1D4BMH42Ys.Tz7QJcrp8S'
       })

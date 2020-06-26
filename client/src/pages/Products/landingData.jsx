@@ -86,6 +86,12 @@ let arr = {
             img: img9,
             heading: "Bring In The Best In Quality Furniture To Your Home"
         },
+    ],
+    "footwear": [
+        {
+            img: img2,
+            heading: "The Best Sound Quality Headphones"
+        }
     ]
 };
 export default arr;

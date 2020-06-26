@@ -119,6 +119,7 @@ class Addpr extends Component {
                                 <option value="kids">Kids's Wear</option>
                                 <option value="homeandfurniture">Home and Furniture</option>
                                 <option value="books">Books</option>
+                                <option value="footwear">Foot Wear</option>
                             </select>
                             {formErrors.prcategory.length > 0 && (
                                 <span className="errorMessage">{formErrors.prcategory}</span>

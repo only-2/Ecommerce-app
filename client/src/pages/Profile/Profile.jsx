@@ -17,7 +17,7 @@ class Home extends Component {
         };
     }
     getProfile = async () => {
-        const res = await axios.get('http://localhost:4000/getProfile');
+        const res = await axios.get(`http://localhost:4000/getProfile?id=${this.props.userinfo.userId}`);
         console.log(res.data)
         this.setState({
             firstName: res.data.firstName,
