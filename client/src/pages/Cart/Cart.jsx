@@ -78,11 +78,11 @@ class Cart extends Component {
         let itemList = this.state.cartItems.map(item => {
             return (
                 <div className="product" key={item.id}>
-                    <div className="product-image">
+                    <div className="product-image cover">
                         <img src={item.imageUrl} alt={item.title} />
                     </div>
                     <div className="product-details">
-                        <div className="product-title">{item.title}</div>
+                        <div className="product-title"><strong>{item.title}</strong></div><br></br><br></br>
                         <p className="product-description">{item.description}</p>
                     </div>
                     <div className="product-price">{item.price}</div>
@@ -134,7 +134,7 @@ class Cart extends Component {
                         </div>
                         <div className="totals-item totals-item-total">
                             <label>Grand Total</label>
-                            <div className="totals-value" id="cart-total">{sum + sum * 0.05 + 15}</div>
+                            <div className="totals-value" id="cart-total"><strong>{sum + sum * 0.05 + 15}</strong></div>
                         </div>
                     </div>
 

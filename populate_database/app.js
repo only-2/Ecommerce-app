@@ -72,7 +72,7 @@ const homeandfurniture = [
   },
   {
     title: "Ajanta Analog 33 cm X 33 cm Wall Clock  (Multicolor, With Glass)",
-    imageUrl: "https://rukminim1.flixcart.com/image/416/416/k3yrte80/rack-shelf/g/n/t/dattachbkyellow1-xylm-original-imaffsahp2eh8dzd.jpeg?q=70",
+    imageUrl: "https://rukminim1.flixcart.com/image/416/416/k0r15e80/wall-clock/z/m/h/smart-square-clock-wb-1111-smart-square-clock-wb-1111-analog-original-imafkh2kpzg2wenq.jpeg?q=70",
     Price: 544,
     Desc: "PRINTED Wooden Wall Clock With Beautiful Design For Your Living Room Or Bed Room OR KIDS ROOM. The Product Is Made High Quality Colors, Kundan Pearls Studded Decorated On Wood Along With Colour Glasses. It Is Durable And Look Elegant And Feel Royal For Oneself At Home.",
     category: 'homeandfurniture'

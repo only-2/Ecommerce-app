@@ -55,13 +55,14 @@ nav {
 }
 
 .nav__links li a {
-  transition: all 0.3s ease 0s;
+  transition: all 0.4s ease-in-out;
   color: #2874f0;
 }
 
-.nav__links li a:hover {
+
+ .nav__links li a:hover {
   color: #ffacb7;
-}
+} 
 
 .nav-img {
   width: 80px;

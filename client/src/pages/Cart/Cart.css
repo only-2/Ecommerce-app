@@ -1,6 +1,4 @@
-.cart-overall {
-  /* padding: 10px; */
-}
+
 
 label {
   color: #aaa;
@@ -29,6 +27,10 @@ input[type="number"] {
   float: left;
   width: 20%;
 }
+.cover{
+  object-fit: contain;
+}
+
 .product-details {
   float: left;
   width: 37%;
@@ -84,7 +86,7 @@ input[type="number"] {
 .product .product-price:before,
 .product .product-line-price:before,
 .totals-value:before {
-  content: "$";
+  content: "\20B9";
 }
 
 .shopping-cart {
@@ -133,12 +135,13 @@ input[type="number"] {
   color: #fff;
   font-family: "HelveticaNeue-Medium", "Helvetica Neue Medium";
   font-size: 13px;
-  border-radius: 3px;
+  border-radius: 60px;
 }
 .product .remove-product:hover {
   background-color: #a44;
 }
 /* Totals section */
+
 .totals .totals-item {
   float: right;
   clear: both;
@@ -229,7 +232,7 @@ input[type="number"] {
     margin-top: 10px;
   }
   .product .product-line-price:before {
-    content: "Item Total: $";
+    content: "Item Total: \20B9";
   }
   .totals .totals-item label {
     width: 60%;

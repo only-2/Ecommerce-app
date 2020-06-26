@@ -111,7 +111,7 @@ class Products extends Component {
                         <div className="card_content">
                             <h2 className="card_title">{item.title}</h2>
                             <p className="card_text">{item.desc}</p>
-                            <p className="price">Price: {item.price}$</p>
+                            <p className="price">Price: <span>&#8377;</span>{item.price}</p>
                             <button
                                 className="prbtn card_btn"
                                 onClick={(e) => this.handleRead(e, item)}
