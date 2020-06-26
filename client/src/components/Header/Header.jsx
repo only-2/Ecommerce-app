@@ -32,10 +32,13 @@ class Header extends Component {
                                 <span role="img" aria-label="">🛍️ </span> Category
                             </NavLink></li>
                             {this.props.userinfo.isAdmin && <li><NavLink exact to="/admin">
-                                <span role="img" aria-label="">📜 </span>Admin Power
+                                <span role="img" aria-label="">✏️️ </span>Add Products
                             </NavLink></li>}
                             <li><NavLink exact to="/viewcart">
                                 <span role="img" aria-label="">🛒 </span>Cart
+                            </NavLink></li>
+                            <li><NavLink exact to="/orders">
+                                <span role="img" aria-label="">📜 </span>Orders
                             </NavLink></li>
                             <li><NavLink exact to="/profile">
                                 <span role="img" aria-label="">👨‍💻 </span>{this.props.userinfo.name}
@@ -55,10 +58,13 @@ class Header extends Component {
                             <span role="img" aria-label="">🏬</span> Category
                         </NavLink>
                         {this.props.userinfo.isAdmin && <NavLink exact to="/admin">
-                            <span role="img" aria-label="">📜</span>Add Product
+                            <span role="img" aria-label="">✏️️</span>Add Product
                         </NavLink>}
                         <NavLink exact to="/viewcart">
                             <span role="img" aria-label="">🛒</span>Cart
+                        </NavLink>
+                        <NavLink exact to="/viewcart">
+                            <span role="img" aria-label="">📜</span>Orders
                         </NavLink>
                         <NavLink exact to="/profile">
                             <span role="img" aria-label="">👨‍💻 </span>{"hi, "+this.props.userinfo.name}

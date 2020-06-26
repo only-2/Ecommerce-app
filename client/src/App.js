@@ -10,6 +10,7 @@ import Cart from './pages/Cart/Cart';
 import Category from "./pages/Category/Category";
 import Profile from "./pages/Profile/Profile";
 import ProductView from "./pages/ProductView/ProductView";
+import Orders from "./pages/Orders/Orders";
 
 
 class App extends React.Component {
@@ -278,6 +279,16 @@ class App extends React.Component {
                         exact
                         render={props => (
                             <Profile
+                                userinfo={this.state.userinfo}
+                                logout={this.logoutHandler}
+                            />
+                        )}
+                    />
+                    <Route
+                        path="/orders"
+                        exact
+                        render={props => (
+                            <Orders
                                 userinfo={this.state.userinfo}
                                 logout={this.logoutHandler}
                             />

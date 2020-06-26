@@ -95,6 +95,20 @@ app.use('/getProfile', (req, res) => {
     .catch(err => console.log(err));
 });
 
+app.use('/getOrders', (req, res) => {
+  const id = req.query.id;
+  // console.log(id, typeof id);
+  User.findByPk(id)
+    .then(user => {
+      return user.getOrders({include: ['products']});
+    })
+    .then(orders => {
+      // console.log(orders);
+      res.send(orders);
+    })
+    .catch(err => console.log(err));
+});
+
 
 app.use('/getElectronics', (req, res) => {
   Product.findAll({ where: { category: 'electronics' } })
