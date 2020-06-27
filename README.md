@@ -1,14 +1,38 @@
-### Ecommerce app
+<p align="center"><img src="https://image.flaticon.com/icons/svg/2898/2898444.svg" align="center" width="175"></p>
+<h2 align="center">Ecommerce app</h2>
 
-Database Management System (CS204) project made by @amanraj1608 and @naveen19991124
+<p align="center"><b>⚡ Ecommerce app made using ReactJS and NodeJS 🛒</b></p>
+
+
+Database Management System (CS204) project made by [@amanraj1608](https://twitter.com/amanraj1608) and [@naveen19991124](https://github.com/naveen19991124)
+
+
+#### Project Structure
+
+```
+├── client
+│    ├── public
+│    ├── src
+│    ├── package.json
+│    ├── .gitignore
+│    ├── README.md
+├── backend
+│    ├── index.js
+│    ├── package.json
+├── populate_database
+│    ├── index.js
+│    ├── package.json
+└── README.md
+```
+
 
 #### Technologies Used
 
 ```
-ReactJS
-NodeJS
-Sequelize
-with rest API
+ReactJS on client side
+NodeJS for Rest API
+Sequelize ORM for MySQL database
+Stripe for Payment
 ```
 
 #### How to run locally
@@ -43,20 +67,4 @@ Backend at - heroku.com/
 MySQL Database at - freemysqlhosting.net/
 ```
 
-#### Folder Structure
 
-```
-├── client
-│    ├── public
-│    ├── src
-│    ├── package.json
-│    ├── .gitignore
-│    ├── README.md
-├── backend
-│    ├── index.js
-│    ├── package.json
-├── populate_database
-│    ├── index.js
-│    ├── package.json
-└── README.md
-```
