@@ -10,12 +10,17 @@
     font-weight: 400;
     font-size: 35px;
 }
+.container-email{
+    float:right;
+    margin-bottom: 10px;
+}
 .order-exp{
     margin:10px;
 }
-/* .order-item{
-    border:2px solid orange;
-} */
+ .order-item{
+    /* border:2px solid orange; */
+    margin: 20px;
+} 
 .order-details{
     /* border:2px solid blue; */
     box-shadow: 6px 6px 14px -7px rgba(0,0,0,1);
@@ -32,7 +37,7 @@
     display: flex;
     /* border:2px solid yellow; */
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     margin-left: 15px;
 }
 .order-p{

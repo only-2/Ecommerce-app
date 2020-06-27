@@ -61,6 +61,7 @@ class Orders extends Component {
 
                 <div className="order-container">
                     <h1 className="container-head">Hi, Welcome To The Payment History</h1>
+                    <h1 className = "container-email">Any Issues? Email Us : Flipkart_CustomerCare@gmail.com</h1>
                     <hr/>
                     {this.state.orders.length > 0 ? ordersList : <h1>No orders placed <span role="img" aria-label="sheep">🙁</span></h1>}
                 </div>
