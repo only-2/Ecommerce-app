@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
+
+
+/* .order-container{
+    border: 2px solid black;
+} */
+.container-head{
+    margin-top:30px;
+    margin-bottom: 30px;
+    font-weight: 400;
+    font-size: 35px;
+}
+.order-exp{
+    margin:10px;
+}
+/* .order-item{
+    border:2px solid orange;
+} */
+.order-details{
+    /* border:2px solid blue; */
+    box-shadow: 6px 6px 14px -7px rgba(0,0,0,1);
+    margin-left:10px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    display: flex;
+}
+.order-img{
+    height: 200px;
+    width:200px;
+}
+.order-q{
+    display: flex;
+    /* border:2px solid yellow; */
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 15px;
+}
+.order-p{
+    font-size: 20px;
+    font-weight: 550;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    /* border: 2px solid green; */
+}
+.order-details li{
+    list-style-type: none;
+}

@@ -29,19 +29,28 @@ class Orders extends Component {
 
         let ordersList = this.state.orders.map(order => {
             return (
-                <div className="order" key={order.id}>
-                    <h1>{order.id}</h1>
+                <div className="order-item" key={order.id}>
+                    <h2 className="order-exp">Your Order ID Is - {order.id}</h2>
+                    <h2 className="order-exp">Your Date Of Order Is - {order.updatedAt.substring(0,10)}</h2>
+                    <h2 className = "order-exp">Your Ordered Items Are:</h2>
                     {
                         order.products.map(product => {
                             return (
-                                <div key={product.id}>
+                                <div key={product.id} className="order-details">
+                                    <img src={product.imageUrl} alt={product.title} className = "order-img"/>
+                                    <div className="order-q">
+                                    <p className = "order-p">Ordered Item Name:</p>
                                     <li>{product.title}</li>
+                                    <p className = "order-p">Ordered Item Quantitiy:</p>
                                     <li>{product.orderItem.quantity}</li>
-                                    <img src={product.imageUrl} alt={product.title} />
+                                    <p className  = "order-p">Ordered Item Price:</p>
+                                    <li>{product.price}</li>
+                                    </div>
                                 </div>
                             )
                         })
                     }
+                <hr/>
                 </div>
             )
         })
@@ -49,9 +58,13 @@ class Orders extends Component {
         return (
             <div className="order-main">
                 <Header logout={this.props.logout} userinfo={this.props.userinfo} />
-                {
-                    this.state.orders.length > 0 ? ordersList : <h1>No order placed 🙁</h1>
-                }
+
+                <div className="order-container">
+                    <h1 className="container-head">Hi, Welcome To The Payment History</h1>
+                    <hr/>
+                    {this.state.orders.length > 0 ? ordersList : <h1>No orders placed <span role="img" aria-label="sheep">🙁</span></h1>}
+                </div>
+
             </div>
         );
     }

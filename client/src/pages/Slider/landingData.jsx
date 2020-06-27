@@ -6,6 +6,11 @@ import img5 from '../../images/slide4.jpg'
 import img6 from '../../images/slide5.jpg'
 let arr = [
     {
+        img:img6,
+        heading:"#Never Settle",
+        desc:"Coming Soon"
+    },
+    {
         img:img1,
         heading:"Introducing Apple Watch Series",
         desc:"Starting from 45,999"
@@ -25,11 +30,6 @@ let arr = [
         img:img4,
         heading:"Amazing Furniture Deals",
         desc:"Starting from 799"
-    },
-    {
-        img:img6,
-        heading:"#Never Settle",
-        desc:"Coming Soon"
     },
     {
         img:img5,
