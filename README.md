@@ -58,7 +58,7 @@ Third terminal:
 
 #### Project deployment
 
-Due to lack of good free onlinesql databse online deployed link may work slow. Run on local machine to avoid latency.
+Due to lack of good free onlinesql database online deployed link may work slow. Run on local machine to avoid latency.
 Live at https://my-flipkart.surge.sh/
 
 ```
