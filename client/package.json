@@ -7,7 +7,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^12.1.0",
     "axios": "^0.19.2",
-    "react": "^16.13.1",
+    "react": "^16.14.0",
     "react-dom": "^16.13.1",
     "react-image-magnify": "^2.7.4",
     "react-router-dom": "^5.2.0",
