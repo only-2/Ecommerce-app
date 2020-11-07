@@ -3,17 +3,17 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.2",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^12.1.0",
-    "axios": "^0.19.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "@testing-library/jest-dom": "^5.11.5",
+    "@testing-library/react": "^11.1.1",
+    "@testing-library/user-event": "^12.2.0",
+    "axios": "^0.21.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "react-image-magnify": "^2.7.4",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "4.0.0",
     "react-stripe-checkout": "^2.6.3",
-    "react-toastify": "^6.0.8"
+    "react-toastify": "^6.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -17,7 +17,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isAuth: false,
+            isAuth: true,
             token: null,
             userinfo: {
                 name: '',
@@ -42,84 +42,24 @@ class App extends React.Component {
     */
 
     componentDidMount() {
-        const token = localStorage.getItem('token');
-        const expiryDate = localStorage.getItem('expiryDate');
-        if (!token || !expiryDate) {
-            return;
-        }
-        if (new Date(expiryDate) <= new Date()) {
-            this.logoutHandler();
-            return;
-        }
-        const userId = localStorage.getItem('userId');
-        const isAdmin = localStorage.getItem('isAdmin');
-        const name = localStorage.getItem('name');
-        const remainingMilliseconds = new Date(expiryDate).getTime() - new Date().getTime();
         this.setState({
             isAuth: true,
             userinfo: {
-                name: name,
-                userId: userId,
-                isAdmin: isAdmin,
+                name: "Aman Raj",
+                userId: "Static Data",
+                isAdmin: true,
             },
-            token: token
         });
-        this.setAutoLogout(remainingMilliseconds);
     }
     logoutHandler = () => {
-        this.setState({ isAuth: false, token: null });
-        localStorage.removeItem('token');
-        localStorage.removeItem('expiryDate');
-        localStorage.removeItem('userId');
-    };
-    loginHandler = (event, authData) => {
-        event.preventDefault();
-        fetch('http://localhost:4000/auth/login/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
+        this.setState({
+            isAuth: true,
+            userinfo: {
+                name: "Aman Raj",
+                userId: "Static Data",
+                isAdmin: true,
             },
-            body: JSON.stringify({
-                email: authData.email,
-                password: authData.password
-            })
-        })
-            .then(res => {
-                if (res.status !== 200 && res.status !== 201) {
-                    console.log('Error!');
-                    throw new Error('Could not authenticate you!');
-                }
-                return res.json();
-            })
-            .then(resData => {
-                // console.log(resData);
-                this.setState({
-                    isAuth: true,
-                    userinfo: {
-                        name: resData.name,
-                        userId: resData.userId,
-                        isAdmin: resData.isAdmin,
-                    },
-                    token: resData.token
-                });
-                console.log(this.state)
-                localStorage.setItem('token', resData.token);
-                localStorage.setItem('name', resData.name);
-                localStorage.setItem('userId', resData.userId);
-                localStorage.setItem('isAdmin', resData.isAdmin);
-                const remainingMilliseconds = 60 * 60 * 1000;
-                const expiryDate = new Date(
-                    new Date().getTime() + remainingMilliseconds
-                );
-                localStorage.setItem('expiryDate', expiryDate.toISOString());
-                this.setAutoLogout(remainingMilliseconds);
-            })
-            .catch(err => {
-                console.log(err);
-                this.setState({
-                    isAuth: false
-                });
-            });
+        });
     };
     signupHandler = (event, authData) => {
         event.preventDefault();

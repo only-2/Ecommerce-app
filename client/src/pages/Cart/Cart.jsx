@@ -20,10 +20,29 @@ class Cart extends Component {
     }
 
     getCartItems = async () => {
-        const res = await axios.get(`http://localhost:4000/getCartProducts/?id=${this.props.userinfo.userId}`);
-        console.log(`http://localhost:4000/getCartProducts/?${this.props.userinfo.userId}`);
-        console.log(res.data)
-        this.setState({ cartItems: res.data });
+        const data = [{
+            title: "DELL XPS 15",
+            imageUrl: "https://www.lifewire.com/thmb/eHrBCZqTCXeoCl7cSkBngIzaZAo=/1500x1500/filters:fill(auto,1)/_hero_SQ_Dell-XPS-13-Two-in-One-Computer-1-c8f6c090145a4de69ca1c90f75659abe.jpg",
+            price: 149000,
+            description: "Dell’s smallest 39.62cm (15.6) performance laptop with a stunning OLED display option. Now featuring 9th Gen Intel® Core™ processors.",
+            category: 'electronics',
+            quantity: '2'
+        }, {
+            title: "Now You See Her  (English, Paperback, Perks Heidi)",
+            imageUrl: "https://rukminim1.flixcart.com/image/416/416/k1jlyfk0/book/7/8/2/now-you-see-her-original-imafk6a8wsjzt6cy.jpeg?q=70",
+            price: 399,
+            description: "She was your responsibility. And now she's missing.`I flew through this book in three days, with my heart in my mouth' Lisa Jewell`Believe us when we say this novel is the real deal' Heat `A gripping tale of friendship and deceit, where nothing is what it seems....",
+            category: 'books',
+            quantity: '1'
+        }, {
+            title: "iPhone 11",
+            imageUrl: "https://rukminim1.flixcart.com/image/416/416/k2jbyq80pkrrdj/mobile-refurbished/x/j/s/iphone-11-128-d-mwm02hn-a-apple-0-original-imafkg242ugz8hwc.jpeg?q=70",
+            price: 73990,
+            description: "Featuring a 15.49-cm (6.1) all-screen Liquid Retina LCD and a glass and aluminum design, the iPhone 11 is as beautiful as it gets. Also, the IP68 rating ensures that is water-resistant up to 2 meters for 30 minutes.",
+            category: 'electronics',
+            quantity: '1'
+        },]
+        this.setState({ cartItems: data });
         console.log(this.state)
     }
 
@@ -87,16 +106,16 @@ class Cart extends Component {
                     </div>
                     <div className="product-price">{item.price}</div>
                     <div className="product-quantity">
-                        <input className="inputne" type="number" value={item.cartItem.quantity} onChange={this.handleChange} />
-                        <button className="pbtn" onClick={(e) => this.IncrementItem(e, item.cartItem.productId)}> + </button>
+                        <input className="inputne" type="number" value={item.quantity} onChange={this.handleChange} />
+                        <button className="pbtn" onClick={(e) => this.IncrementItem(e, item.productId)}> + </button>
                     </div>
                     <div className="product-removal">
-                        <button className="remove-product" onClick={(e) => this.remove(e, item.cartItem.productId)}>
+                        <button className="remove-product" onClick={(e) => this.remove(e, item.productId)}>
                             Remove
                     </button>
                     </div>
-                    <div style={{ display: 'none' }}>{sum += item.price * item.cartItem.quantity}</div>
-                    <div className="product-line-price">{item.price * item.cartItem.quantity}</div>
+                    <div style={{ display: 'none' }}>{sum += item.price * item.quantity}</div>
+                    <div className="product-line-price">{item.price * item.quantity}</div>
                 </div>
             )
         })
@@ -141,7 +160,7 @@ class Cart extends Component {
                     <StripeCheckout
                         className="checkout"
                         stripeKey="pk_test_51Gxt4GIY3uMkMao1o5wDkMtWsbEu4UgosWpYL5qFDXZUTZruG24dCGMPgID56kw8m8pPMRcaF7uISBAbfaGBCqal00Mcuc0lWq"
-                        token={(token) => this.handleToken(token, sum = ((sum + sum * 0.05 + 15)))}
+                        token={(token) => this.handleToken(token, sum = (sum + sum * 0.05 + 15))}
                         amount={(sum + sum * 0.05 + 15) * 100}
                         name="Payment Using Card"
                     />

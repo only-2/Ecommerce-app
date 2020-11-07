@@ -29,12 +29,7 @@ class Products extends Component {
 
     handleClick = async (event, prodId) => {
         event.preventDefault();
-        const userId = this.props.userinfo.userId;
         // console.log(this.props.userinfo.userId, prodId);
-        await axios.post('http://localhost:4000/addtoCart', {
-            "userId": userId,
-            "prodId": prodId
-        })
         this.props.history.push('/viewcart')
     }
 

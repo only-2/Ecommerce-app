@@ -6,35 +6,35 @@ import img5 from '../../images/slide4.jpg'
 import img6 from '../../images/slide5.jpg'
 let arr = [
     {
-        img:img6,
-        heading:"#Never Settle",
-        desc:"Coming Soon"
+        img: img6,
+        heading: "#Never Settle",
+        desc: "Coming Soon"
     },
     {
-        img:img1,
-        heading:"Introducing Apple Watch Series",
-        desc:"Starting from 45,999"
+        img: img3,
+        heading: "New Summer Arrivals",
+        desc: "Starting from 299"
+    },
+
+    {
+        img: img2,
+        heading: "New Home Decor Arrivals",
+        desc: "Starting From As Low As 799"
     },
     {
-        img:img3,
-        heading:"New Summer Arrivals",
-        desc:"Starting from 299"
-    },
-    
-    {
-        img:img2,
-        heading:"New Home Decor Arrivals",
-        desc:"Starting From As Low As 799"
+        img: img4,
+        heading: "Amazing Furniture Deals",
+        desc: "Starting from 799"
     },
     {
-        img:img4,
-        heading:"Amazing Furniture Deals",
-        desc:"Starting from 799"
+        img: img5,
+        heading: "New Toys Collection",
+        desc: "Starting from 199"
     },
     {
-        img:img5,
-        heading:"New Toys Collection",
-        desc:"Starting from 199"
+        img: img1,
+        heading: "Introducing Apple Watch Series",
+        desc: "Starting from 45,999"
     },
 ];
 export default arr
